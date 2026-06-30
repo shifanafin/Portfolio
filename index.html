@@ -1,986 +1,1965 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Shifana CT — Full-Stack & Flutter Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-:root{
-  --ink:#0a0a0a;--ink2:#2d2d2d;--ink3:#555;--ink4:#999;
-  --paper:#faf9f7;--paper2:#f2f0ec;
-  --gold:#c9973a;--navy:#0f1c35;--green:#1d6a45;
-  --serif:'DM Serif Display',Georgia,serif;
-  --sans:'Inter',-apple-system,sans-serif;
-  --mono:'JetBrains Mono',monospace;
-}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-track{background:var(--paper2)}
-::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Shifana CT — Full-Stack & Flutter Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-/* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 60px;background:rgba(250,249,247,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06)}
-.nav-logo{font-family:var(--serif);font-size:20px;color:var(--ink);text-decoration:none}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:var(--ink)}
-.nav-cta{font-size:12px;font-weight:500;padding:8px 20px;border:1.5px solid var(--navy);color:var(--navy);border-radius:2px;text-decoration:none;transition:all .2s}
-.nav-cta:hover{background:var(--navy);color:#fff}
+    html {
+      scroll-behavior: smooth
+    }
 
-/* ══════════════════════════════
+    :root {
+      --ink: #0a0a0a;
+      --ink2: #2d2d2d;
+      --ink3: #555;
+      --ink4: #999;
+      --paper: #faf9f7;
+      --paper2: #f2f0ec;
+      --gold: #c9973a;
+      --navy: #0f1c35;
+      --green: #1d6a45;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden
+    }
+
+    ::-webkit-scrollbar {
+      width: 4px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--paper2)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 2px
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 60px;
+      background: rgba(250, 249, 247, .94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--ink);
+      text-decoration: none
+    }
+
+    .nav-logo span {
+      color: var(--gold)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--ink3);
+      text-decoration: none;
+      transition: color .2s
+    }
+
+    .nav-links a:hover {
+      color: var(--ink)
+    }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 8px 20px;
+      border: 1.5px solid var(--navy);
+      color: var(--navy);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all .2s
+    }
+
+    .nav-cta:hover {
+      background: var(--navy);
+      color: #fff
+    }
+
+    /* ══════════════════════════════
    HERO — full viewport, split
 ══════════════════════════════ */
-#hero{
-  min-height:100vh;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  padding-top:0;
-  overflow:hidden;
-  position:relative;
-}
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 0;
+      overflow: hidden;
+      position: relative;
+    }
 
-/* Left — dark navy panel */
-.hero-left{
-  background:var(--navy);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:120px 64px 80px 72px;
-  position:relative;
-  overflow:hidden;
-}
+    /* Left — dark navy panel */
+    .hero-left {
+      background: var(--navy);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 64px 80px 72px;
+      position: relative;
+      overflow: hidden;
+    }
 
-/* Subtle geometric texture on left panel */
-.hero-left::before{
-  content:'';
-  position:absolute;
-  top:-80px;right:-80px;
-  width:360px;height:360px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(201,151,58,.12) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hero-left::after{
-  content:'';
-  position:absolute;
-  bottom:-60px;left:-60px;
-  width:280px;height:280px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(29,106,69,.15) 0%,transparent 70%);
-  pointer-events:none;
-}
+    /* Subtle geometric texture on left panel */
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 151, 58, .12) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-.hero-eyebrow{
-  font-family:var(--mono);
-  font-size:10.5px;
-  color:var(--gold);
-  letter-spacing:.2em;
-  text-transform:uppercase;
-  margin-bottom:24px;
-  opacity:0;
-  animation:rise .6s .3s ease forwards;
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.hero-eyebrow::before{
-  content:'';
-  display:inline-block;
-  width:28px;height:1px;
-  background:var(--gold);
-}
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29, 106, 69, .15) 0%, transparent 70%);
+      pointer-events: none;
+    }
 
-.hero-headline{
-  font-family:var(--serif);
-  font-size:clamp(40px,4.8vw,62px);
-  line-height:1.08;
-  letter-spacing:-.5px;
-  color:#fff;
-  margin-bottom:28px;
-  opacity:0;
-  animation:rise .7s .5s ease forwards;
-}
-.hero-headline em{font-style:italic;color:var(--gold)}
-.hero-headline .outline{
-  color:transparent;
-  -webkit-text-stroke:1px rgba(255,255,255,.3);
-}
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: rise .6s .3s ease forwards;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-.hero-sub{
-  font-size:15px;
-  line-height:1.78;
-  color:rgba(255,255,255,.55);
-  max-width:420px;
-  margin-bottom:40px;
-  font-weight:300;
-  opacity:0;
-  animation:rise .7s .7s ease forwards;
-}
-.hero-sub b{color:rgba(255,255,255,.9);font-weight:500}
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
 
-.hero-actions{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-  opacity:0;
-  animation:rise .6s .9s ease forwards;
-}
-.btn-primary{
-  font-size:13px;font-weight:500;
-  padding:13px 28px;
-  background:var(--gold);
-  color:#0f1c35;
-  border-radius:2px;
-  text-decoration:none;
-  transition:all .2s;
-  letter-spacing:.02em;
-}
-.btn-primary:hover{background:#e0aa40;transform:translateY(-1px)}
-.btn-ghost{
-  font-size:13px;
-  padding:13px 24px;
-  border:1.5px solid rgba(255,255,255,.2);
-  color:rgba(255,255,255,.7);
-  border-radius:2px;
-  text-decoration:none;
-  transition:all .2s;
-}
-.btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff}
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(40px, 4.8vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -.5px;
+      color: #fff;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: rise .7s .5s ease forwards;
+    }
 
-/* Hero stats row */
-.hero-stats{
-  display:flex;
-  gap:32px;
-  margin-top:56px;
-  padding-top:32px;
-  border-top:1px solid rgba(255,255,255,.1);
-  flex-wrap:wrap;
-  opacity:0;
-  animation:rise .6s 1.1s ease forwards;
-}
-.stat-num{
-  font-family:var(--serif);
-  font-size:28px;
-  color:#fff;
-  line-height:1;
-  margin-bottom:4px;
-}
-.stat-num span{color:var(--gold)}
-.stat-lbl{font-size:11px;color:rgba(255,255,255,.4);line-height:1.4;font-weight:300}
+    .hero-headline em {
+      font-style: italic;
+      color: var(--gold)
+    }
 
-/* Right — animated visual panel */
-.hero-right{
-  position:relative;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#0d1628;
-}
+    .hero-headline .outline {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255, 255, 255, .3);
+    }
 
-/* Animated gradient orbs */
-.orb{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(60px);
-  animation:float 8s ease-in-out infinite;
-}
-.orb-1{width:400px;height:400px;background:rgba(201,151,58,.18);top:-80px;right:-80px;animation-delay:0s}
-.orb-2{width:320px;height:320px;background:rgba(29,106,69,.2);bottom:0;left:-60px;animation-delay:-3s}
-.orb-3{width:200px;height:200px;background:rgba(100,150,255,.1);top:50%;left:40%;animation-delay:-5s}
+    .hero-sub {
+      font-size: 15px;
+      line-height: 1.78;
+      color: rgba(255, 255, 255, .55);
+      max-width: 420px;
+      margin-bottom: 40px;
+      font-weight: 300;
+      opacity: 0;
+      animation: rise .7s .7s ease forwards;
+    }
 
-/* Code card floating in hero right */
-.hero-code-card{
-  position:relative;
-  z-index:2;
-  width:340px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:10px;
-  overflow:hidden;
-  backdrop-filter:blur(10px);
-  animation:float-card 6s ease-in-out infinite;
-  opacity:0;
-  animation:card-appear .8s 1.2s ease forwards, float-card 6s 2s ease-in-out infinite;
-}
-.code-card-bar{
-  background:rgba(255,255,255,.06);
-  padding:10px 16px;
-  display:flex;
-  align-items:center;
-  gap:7px;
-  border-bottom:1px solid rgba(255,255,255,.07);
-}
-.dot{width:10px;height:10px;border-radius:50%}
-.dot-r{background:#ff5f57}.dot-y{background:#febc2e}.dot-g{background:#28c840}
-.code-filename{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);margin-left:8px}
-.code-body{padding:18px 20px;font-family:var(--mono);font-size:12px;line-height:2}
-.c-dim{color:rgba(255,255,255,.2)}
-.c-key{color:#c9973a}
-.c-str{color:#4caf7d}
-.c-val{color:#6eb5ff}
-.c-fn{color:#c792ea}
+    .hero-sub b {
+      color: rgba(255, 255, 255, .9);
+      font-weight: 500
+    }
 
-/* Floating badge */
-.hero-badge{
-  position:absolute;
-  bottom:40px;
-  right:32px;
-  background:rgba(201,151,58,.15);
-  border:1px solid rgba(201,151,58,.3);
-  backdrop-filter:blur(10px);
-  border-radius:8px;
-  padding:12px 16px;
-  z-index:3;
-  opacity:0;
-  animation:rise .6s 1.6s ease forwards;
-}
-.badge-line1{font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
-.badge-line2{font-size:12px;color:rgba(255,255,255,.8);font-weight:500}
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: rise .6s .9s ease forwards;
+    }
 
-/* Scroll hint */
-.scroll-hint{
-  position:absolute;
-  bottom:32px;
-  left:72px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-family:var(--mono);
-  font-size:9.5px;
-  color:rgba(255,255,255,.3);
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  opacity:0;
-  animation:rise .5s 1.5s ease forwards;
-}
-.scroll-line{width:36px;height:1px;background:var(--gold);opacity:.5}
+    .btn-primary {
+      font-size: 13px;
+      font-weight: 500;
+      padding: 13px 28px;
+      background: var(--gold);
+      color: #0f1c35;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all .2s;
+      letter-spacing: .02em;
+    }
 
-/* ══ STORY ══ */
-#story{background:var(--navy);color:#fff;padding:100px 0;overflow:hidden}
-.story-inner{max-width:1100px;margin:0 auto;padding:0 72px}
-.story-intro{max-width:600px;margin-bottom:72px}
-.story-label{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px}
-.story-title{font-family:var(--serif);font-size:clamp(32px,4vw,50px);line-height:1.1;letter-spacing:-.5px;color:#fff;margin-bottom:14px}
-.story-title em{font-style:italic;color:var(--gold)}
-.story-desc{font-size:14px;line-height:1.8;color:rgba(255,255,255,.45);font-weight:300}
+    .btn-primary:hover {
+      background: #e0aa40;
+      transform: translateY(-1px)
+    }
 
-.chapters{display:flex;flex-direction:column}
-.chapter{display:grid;grid-template-columns:1fr 72px 1fr;align-items:stretch;min-height:380px}
-.chapter:nth-child(even) .ch-content{order:3}
-.chapter:nth-child(even) .ch-line{order:2}
-.chapter:nth-child(even) .ch-visual{order:1}
-.ch-content{padding:44px 44px 44px 0;display:flex;flex-direction:column;justify-content:center}
-.chapter:nth-child(even) .ch-content{padding:44px 0 44px 44px}
-.ch-line{display:flex;flex-direction:column;align-items:center;padding:16px 0}
-.ch-dot{width:14px;height:14px;border-radius:50%;background:var(--gold);flex-shrink:0;z-index:1;margin-top:44px;box-shadow:0 0 0 4px rgba(201,151,58,.2)}
-.ch-vline{flex:1;width:1px;background:rgba(255,255,255,.1)}
-.ch-year{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
-.ch-heading{font-family:var(--serif);font-size:clamp(22px,2.8vw,32px);line-height:1.15;letter-spacing:-.3px;color:#fff;margin-bottom:12px}
-.ch-heading em{font-style:italic;color:rgba(255,255,255,.4)}
-.ch-body{font-size:13.5px;line-height:1.82;color:rgba(255,255,255,.5);font-weight:300;max-width:360px}
-.ch-body b{color:rgba(255,255,255,.85);font-weight:500}
+    .btn-ghost {
+      font-size: 13px;
+      padding: 13px 24px;
+      border: 1.5px solid rgba(255, 255, 255, .2);
+      color: rgba(255, 255, 255, .7);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: all .2s;
+    }
 
-/* Chapter visuals — CSS gradient scenes, no external images */
-.ch-visual{position:relative;overflow:hidden;min-height:340px}
-.ch-visual-inner{width:100%;height:100%;display:flex;align-items:flex-end;padding:20px}
-.ch-visual-tag{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.6);background:rgba(0,0,0,.3);backdrop-filter:blur(6px);padding:4px 10px;border-radius:2px;letter-spacing:.1em;text-transform:uppercase}
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, .5);
+      color: #fff
+    }
 
-/* Each chapter scene has a unique gradient */
-.scene-college{background:linear-gradient(145deg,#1a3a6b 0%,#0d2247 40%,#1d3d6e 70%,#2a5298 100%)}
-.scene-mca{background:linear-gradient(145deg,#0d3320 0%,#1a5c38 40%,#0f4028 70%,#1e6b42 100%)}
-.scene-interview{background:linear-gradient(145deg,#2d1f3d 0%,#4a2c5e 40%,#3b2050 70%,#5c3070 100%)}
-.scene-dubai{background:linear-gradient(145deg,#1a2940 0%,#c9973a 60%,#e8a830 100%)}
-.scene-now{background:linear-gradient(145deg,#0f1c35 0%,#1a3a6b 50%,#0d3320 100%)}
+    /* Hero stats row */
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, .1);
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: rise .6s 1.1s ease forwards;
+    }
 
-/* Decorative elements inside scene */
-.scene-el{position:absolute;opacity:.15}
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 28px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
 
-/* ══ WORK ══ */
-#work{padding:100px 0;background:var(--paper)}
-.work-inner{max-width:1100px;margin:0 auto;padding:0 72px}
-.sec-eyebrow{font-family:var(--mono);font-size:10px;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
-.sec-title{font-family:var(--serif);font-size:clamp(30px,4vw,46px);line-height:1.1;letter-spacing:-.4px;color:var(--ink);margin-bottom:44px}
-.sec-title em{font-style:italic;color:var(--gold)}
+    .stat-num span {
+      color: var(--gold)
+    }
 
-.work-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
-.wcard{
-  position:relative;overflow:hidden;display:block;text-decoration:none;
-  transition:transform .3s ease;
-}
-.wcard:hover{transform:scale(.99)}
-.wcard:hover .wcard-img{filter:brightness(.55)}
-.wcard-img{
-  width:100%;height:300px;display:block;
-  transition:filter .4s ease;
-  filter:brightness(.7);
-}
-/* Each project card gets its own gradient scene */
-.img-erp{background:linear-gradient(135deg,#1a3a6b,#0d2247,#1a4a2e)}
-.img-accounting{background:linear-gradient(135deg,#0d2247,#1e3a5f,#2a4a7f)}
-.img-bakkah{background:linear-gradient(135deg,#1a2a1a,#2d4a2d,#c9973a44)}
-.img-teams{background:linear-gradient(135deg,#1a1a3a,#2d2d5e,#4a4a8a)}
-.img-pharma{background:linear-gradient(135deg,#0d3320,#1a5c38,#1e6b42)}
-.img-ecom{background:linear-gradient(135deg,#3a1a2a,#5e2d3a,#c9973a22)}
+    .stat-lbl {
+      font-size: 11px;
+      color: rgba(255, 255, 255, .4);
+      line-height: 1.4;
+      font-weight: 300
+    }
 
-/* SVG icon inside each card */
-.wcard-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-70%);opacity:.12;pointer-events:none}
+    /* Right — animated visual panel */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0d1628;
+    }
 
-.wcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.9) 0%,rgba(10,10,10,.2) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
-.wcard-tag{font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
-.wcard-name{font-family:var(--serif);font-size:21px;color:#fff;letter-spacing:-.2px;margin-bottom:4px}
-.wcard-desc{font-size:12px;color:rgba(255,255,255,.55);line-height:1.5;font-weight:300}
-.wcard-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
-.chip{font-family:var(--mono);font-size:9px;padding:2px 7px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.5);border-radius:2px}
-.wbadge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:8.5px;font-weight:500;padding:3px 8px;border-radius:2px;letter-spacing:.06em;text-transform:uppercase}
-.bl{background:#e6f4ec;color:#166534}
-.bs{background:#eef2ff;color:#3730a3}
+    /* Animated gradient orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      animation: float 8s ease-in-out infinite;
+    }
 
-.wcard-wide{display:block;text-decoration:none;position:relative;overflow:hidden;transition:transform .3s}
-.wcard-wide:hover{transform:scale(.995)}
-.wcard-wide:hover .wcard-img-wide{filter:brightness(.55)}
-.wcard-img-wide{width:100%;height:200px;display:block;transition:filter .4s ease;filter:brightness(.7)}
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(201, 151, 58, .18);
+      top: -80px;
+      right: -80px;
+      animation-delay: 0s
+    }
 
-/* ══ SKILLS ══ */
-#skills{background:var(--navy);padding:80px 0}
-.skills-inner{max-width:1100px;margin:0 auto;padding:0 72px}
-.skills-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:2px;margin-top:40px}
-.sblock{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);padding:24px 18px;transition:all .25s}
-.sblock:hover{background:rgba(201,151,58,.07);border-color:rgba(201,151,58,.25)}
-.sblock-icon{font-size:20px;margin-bottom:12px}
-.sblock-lbl{font-family:var(--mono);font-size:9px;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
-.sblock-items{font-size:11.5px;color:rgba(255,255,255,.45);line-height:1.9;font-weight:300}
+    .orb-2 {
+      width: 320px;
+      height: 320px;
+      background: rgba(29, 106, 69, .2);
+      bottom: 0;
+      left: -60px;
+      animation-delay: -3s
+    }
 
-/* ══ NEXT ══ */
-#next{background:var(--paper);padding:80px 0;border-top:1px solid rgba(0,0,0,.06)}
-.next-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1100px;margin:0 auto;padding:0 72px}
-.next-card{padding:18px 20px;border:1px solid rgba(0,0,0,.09);border-radius:4px;border-left:3px solid;background:var(--paper2);margin-bottom:10px}
-.next-card:last-child{margin-bottom:0}
-.next-card-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
-.next-card-text{font-size:13.5px;color:var(--ink2);font-weight:300}
+    .orb-3 {
+      width: 200px;
+      height: 200px;
+      background: rgba(100, 150, 255, .1);
+      top: 50%;
+      left: 40%;
+      animation-delay: -5s
+    }
 
-/* ══ CONTACT ══ */
-#contact{padding:100px 0;background:var(--paper2)}
-.contact-inner{max-width:680px;margin:0 auto;padding:0 72px;text-align:center}
-.contact-title{font-family:var(--serif);font-size:clamp(36px,5vw,56px);line-height:1.05;letter-spacing:-.5px;margin-bottom:14px}
-.contact-title em{font-style:italic;color:var(--gold)}
+    /* Code card floating in hero right */
+    .hero-code-card {
+      position: relative;
+      z-index: 2;
+      width: 340px;
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 10px;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      animation: float-card 6s ease-in-out infinite;
+      opacity: 0;
+      animation: card-appear .8s 1.2s ease forwards, float-card 6s 2s ease-in-out infinite;
+    }
 
-.terminal{
-  margin:32px auto 0;
-  background:#0f1c35;
-  border-radius:10px;
-  overflow:hidden;
-  text-align:left;
-  font-family:var(--mono);
-  max-width:480px;
-  box-shadow:0 20px 60px rgba(15,28,53,.3);
-}
-.term-bar{background:#1a2f55;padding:11px 16px;display:flex;align-items:center;gap:7px;border-bottom:1px solid rgba(255,255,255,.07)}
-.tdot{width:11px;height:11px;border-radius:50%}
-.term-title{font-size:10px;color:rgba(255,255,255,.3);margin-left:8px;letter-spacing:.05em}
-.term-body{padding:20px 22px 24px;font-size:12.5px;line-height:2.1}
-.t-prompt{color:var(--gold)}
-.t-cmd{color:#fff}
-.t-out{color:rgba(255,255,255,.5);padding-left:14px;display:block}
-.t-link{color:var(--gold);text-decoration:none}
-.t-link:hover{text-decoration:underline}
-.t-ok{color:#28c840}
-.t-cursor{display:inline-block;width:2px;height:13px;background:var(--gold);vertical-align:middle;margin-left:3px;animation:blink 1s ease-in-out infinite}
+    .code-card-bar {
+      background: rgba(255, 255, 255, .06);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid rgba(255, 255, 255, .07);
+    }
 
-footer{border-top:1px solid rgba(0,0,0,.08);padding:22px 72px;display:flex;justify-content:space-between;align-items:center;background:var(--paper)}
-footer p{font-size:12px;color:var(--ink4)}
-footer a{font-size:12px;color:var(--gold);text-decoration:none}
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%
+    }
 
-/* ══ ANIMATIONS ══ */
-@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fade{from{opacity:0}to{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-18px) scale(1.03)}}
-@keyframes float-card{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-12px) rotate(.5deg)}}
-@keyframes card-appear{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .dot-r {
+      background: #ff5f57
+    }
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-l{opacity:0;transform:translateX(-22px);transition:opacity .7s ease,transform .7s ease}
-.reveal-l.visible{opacity:1;transform:translateX(0)}
-.reveal-r{opacity:0;transform:translateX(22px);transition:opacity .7s ease,transform .7s ease}
-.reveal-r.visible{opacity:1;transform:translateX(0)}
+    .dot-y {
+      background: #febc2e
+    }
 
-@media(max-width:900px){
-  #hero{grid-template-columns:1fr}
-  .hero-right{display:none}
-  .hero-left{padding:100px 24px 60px}
-  .story-inner,.work-inner,.skills-inner,.next-grid{padding:0 24px}
-  .next-grid{grid-template-columns:1fr;gap:32px}
-  .chapter{grid-template-columns:1fr}
-  .ch-line{display:none}
-  .ch-content,.chapter:nth-child(even) .ch-content{padding:28px 0;order:2}
-  .ch-visual,.chapter:nth-child(even) .ch-visual{order:1;min-height:220px}
-  .work-grid{grid-template-columns:1fr}
-  .skills-grid{grid-template-columns:repeat(2,1fr)}
-  nav{padding:14px 24px}
-  .nav-links{display:none}
-  footer,.contact-inner{padding:20px 24px}
-}
-</style>
+    .dot-g {
+      background: #28c840
+    }
+
+    .code-filename {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: rgba(255, 255, 255, .3);
+      margin-left: 8px
+    }
+
+    .code-body {
+      padding: 18px 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 2
+    }
+
+    .c-dim {
+      color: rgba(255, 255, 255, .2)
+    }
+
+    .c-key {
+      color: #c9973a
+    }
+
+    .c-str {
+      color: #4caf7d
+    }
+
+    .c-val {
+      color: #6eb5ff
+    }
+
+    .c-fn {
+      color: #c792ea
+    }
+
+    /* Floating badge */
+    .hero-badge {
+      position: absolute;
+      bottom: 40px;
+      right: 32px;
+      background: rgba(201, 151, 58, .15);
+      border: 1px solid rgba(201, 151, 58, .3);
+      backdrop-filter: blur(10px);
+      border-radius: 8px;
+      padding: 12px 16px;
+      z-index: 3;
+      opacity: 0;
+      animation: rise .6s 1.6s ease forwards;
+    }
+
+    .badge-line1 {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 3px
+    }
+
+    .badge-line2 {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .8);
+      font-weight: 500
+    }
+
+    /* Scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 72px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 9.5px;
+      color: rgba(255, 255, 255, .3);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: rise .5s 1.5s ease forwards;
+    }
+
+    .scroll-line {
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      opacity: .5
+    }
+
+    /* ══ STORY ══ */
+    #story {
+      background: var(--navy);
+      color: #fff;
+      padding: 100px 0;
+      overflow: hidden
+    }
+
+    .story-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 72px
+    }
+
+    .story-intro {
+      max-width: 600px;
+      margin-bottom: 72px
+    }
+
+    .story-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 16px
+    }
+
+    .story-title {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1.1;
+      letter-spacing: -.5px;
+      color: #fff;
+      margin-bottom: 14px
+    }
+
+    .story-title em {
+      font-style: italic;
+      color: var(--gold)
+    }
+
+    .story-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, .45);
+      font-weight: 300
+    }
+
+    .chapters {
+      display: flex;
+      flex-direction: column
+    }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: 1fr 72px 1fr;
+      align-items: stretch;
+      min-height: 380px
+    }
+
+    .chapter:nth-child(even) .ch-content {
+      order: 3
+    }
+
+    .chapter:nth-child(even) .ch-line {
+      order: 2
+    }
+
+    .chapter:nth-child(even) .ch-visual {
+      order: 1
+    }
+
+    .ch-content {
+      padding: 44px 44px 44px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center
+    }
+
+    .chapter:nth-child(even) .ch-content {
+      padding: 44px 0 44px 44px
+    }
+
+    .ch-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px 0
+    }
+
+    .ch-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      z-index: 1;
+      margin-top: 44px;
+      box-shadow: 0 0 0 4px rgba(201, 151, 58, .2)
+    }
+
+    .ch-vline {
+      flex: 1;
+      width: 1px;
+      background: rgba(255, 255, 255, .1)
+    }
+
+    .ch-year {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 10px
+    }
+
+    .ch-heading {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.8vw, 32px);
+      line-height: 1.15;
+      letter-spacing: -.3px;
+      color: #fff;
+      margin-bottom: 12px
+    }
+
+    .ch-heading em {
+      font-style: italic;
+      color: rgba(255, 255, 255, .4)
+    }
+
+    .ch-body {
+      font-size: 13.5px;
+      line-height: 1.82;
+      color: rgba(255, 255, 255, .5);
+      font-weight: 300;
+      max-width: 360px
+    }
+
+    .ch-body b {
+      color: rgba(255, 255, 255, .85);
+      font-weight: 500
+    }
+
+    /* Chapter visuals — CSS gradient scenes, no external images */
+    .ch-visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 340px
+    }
+
+    .ch-visual-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px
+    }
+
+    .ch-visual-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: rgba(255, 255, 255, .6);
+      background: rgba(0, 0, 0, .3);
+      backdrop-filter: blur(6px);
+      padding: 4px 10px;
+      border-radius: 2px;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    /* Each chapter scene has a unique gradient */
+    .scene-college {
+      background: linear-gradient(145deg, #1a3a6b 0%, #0d2247 40%, #1d3d6e 70%, #2a5298 100%)
+    }
+
+    .scene-mca {
+      background: linear-gradient(145deg, #0d3320 0%, #1a5c38 40%, #0f4028 70%, #1e6b42 100%)
+    }
+
+    .scene-interview {
+      background: linear-gradient(145deg, #2d1f3d 0%, #4a2c5e 40%, #3b2050 70%, #5c3070 100%)
+    }
+
+    .scene-dubai {
+      background: linear-gradient(145deg, #1a2940 0%, #c9973a 60%, #e8a830 100%)
+    }
+
+    .scene-now {
+      background: linear-gradient(145deg, #0f1c35 0%, #1a3a6b 50%, #0d3320 100%)
+    }
+
+    /* Decorative elements inside scene */
+    .scene-el {
+      position: absolute;
+      opacity: .15
+    }
+
+    /* ══ WORK ══ */
+    #work {
+      padding: 100px 0;
+      background: var(--paper)
+    }
+
+    .work-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 72px
+    }
+
+    .sec-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--gold);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 14px
+    }
+
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4vw, 46px);
+      line-height: 1.1;
+      letter-spacing: -.4px;
+      color: var(--ink);
+      margin-bottom: 44px
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--gold)
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 2px
+    }
+
+    .wcard {
+      position: relative;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      transition: transform .3s ease;
+    }
+
+    .wcard:hover {
+      transform: scale(.99)
+    }
+
+    .wcard:hover .wcard-img {
+      filter: brightness(.55)
+    }
+
+    .wcard-img {
+      width: 100%;
+      height: 300px;
+      display: block;
+      transition: filter .4s ease;
+      filter: brightness(.7);
+    }
+
+    /* Each project card gets its own gradient scene */
+    .img-erp {
+      background: linear-gradient(135deg, #1a3a6b, #0d2247, #1a4a2e)
+    }
+
+    .img-accounting {
+      background: linear-gradient(135deg, #0d2247, #1e3a5f, #2a4a7f)
+    }
+
+    .img-bakkah {
+      background: linear-gradient(135deg, #1a2a1a, #2d4a2d, #c9973a44)
+    }
+
+    .img-teams {
+      background: linear-gradient(135deg, #1a1a3a, #2d2d5e, #4a4a8a)
+    }
+
+    .img-pharma {
+      background: linear-gradient(135deg, #0d3320, #1a5c38, #1e6b42)
+    }
+
+    .img-ecom {
+      background: linear-gradient(135deg, #3a1a2a, #5e2d3a, #c9973a22)
+    }
+
+    /* SVG icon inside each card */
+    .wcard-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -70%);
+      opacity: .12;
+      pointer-events: none
+    }
+
+    .wcard-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 10, 10, .9) 0%, rgba(10, 10, 10, .2) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px
+    }
+
+    .wcard-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 5px
+    }
+
+    .wcard-name {
+      font-family: var(--serif);
+      font-size: 21px;
+      color: #fff;
+      letter-spacing: -.2px;
+      margin-bottom: 4px
+    }
+
+    .wcard-desc {
+      font-size: 12px;
+      color: rgba(255, 255, 255, .55);
+      line-height: 1.5;
+      font-weight: 300
+    }
+
+    .wcard-chips {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 10px
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 2px 7px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      color: rgba(255, 255, 255, .5);
+      border-radius: 2px
+    }
+
+    .wbadge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-family: var(--mono);
+      font-size: 8.5px;
+      font-weight: 500;
+      padding: 3px 8px;
+      border-radius: 2px;
+      letter-spacing: .06em;
+      text-transform: uppercase
+    }
+
+    .bl {
+      background: #e6f4ec;
+      color: #166534
+    }
+
+    .bs {
+      background: #eef2ff;
+      color: #3730a3
+    }
+
+    .wcard-wide {
+      display: block;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s
+    }
+
+    .wcard-wide:hover {
+      transform: scale(.995)
+    }
+
+    .wcard-wide:hover .wcard-img-wide {
+      filter: brightness(.55)
+    }
+
+    .wcard-img-wide {
+      width: 100%;
+      height: 200px;
+      display: block;
+      transition: filter .4s ease;
+      filter: brightness(.7)
+    }
+
+    /* ══ SKILLS ══ */
+    #skills {
+      background: var(--navy);
+      padding: 80px 0
+    }
+
+    .skills-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 72px
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+      margin-top: 40px
+    }
+
+    .sblock {
+      background: rgba(255, 255, 255, .03);
+      border: 1px solid rgba(255, 255, 255, .07);
+      padding: 24px 18px;
+      transition: all .25s
+    }
+
+    .sblock:hover {
+      background: rgba(201, 151, 58, .07);
+      border-color: rgba(201, 151, 58, .25)
+    }
+
+    .sblock-icon {
+      font-size: 20px;
+      margin-bottom: 12px
+    }
+
+    .sblock-lbl {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--gold);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 8px
+    }
+
+    .sblock-items {
+      font-size: 11.5px;
+      color: rgba(255, 255, 255, .45);
+      line-height: 1.9;
+      font-weight: 300
+    }
+
+    /* ══ NEXT ══ */
+    #next {
+      background: var(--paper);
+      padding: 80px 0;
+      border-top: 1px solid rgba(0, 0, 0, .06)
+    }
+
+    .next-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 72px
+    }
+
+    .next-card {
+      padding: 18px 20px;
+      border: 1px solid rgba(0, 0, 0, .09);
+      border-radius: 4px;
+      border-left: 3px solid;
+      background: var(--paper2);
+      margin-bottom: 10px
+    }
+
+    .next-card:last-child {
+      margin-bottom: 0
+    }
+
+    .next-card-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 4px
+    }
+
+    .next-card-text {
+      font-size: 13.5px;
+      color: var(--ink2);
+      font-weight: 300
+    }
+
+    /* ══ CONTACT ══ */
+    #contact {
+      padding: 100px 0;
+      background: var(--paper2)
+    }
+
+    .contact-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 72px;
+      text-align: center
+    }
+
+    .contact-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -.5px;
+      margin-bottom: 14px
+    }
+
+    .contact-title em {
+      font-style: italic;
+      color: var(--gold)
+    }
+
+    .terminal {
+      margin: 32px auto 0;
+      background: #0f1c35;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: left;
+      font-family: var(--mono);
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(15, 28, 53, .3);
+    }
+
+    .term-bar {
+      background: #1a2f55;
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid rgba(255, 255, 255, .07)
+    }
+
+    .tdot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%
+    }
+
+    .term-title {
+      font-size: 10px;
+      color: rgba(255, 255, 255, .3);
+      margin-left: 8px;
+      letter-spacing: .05em
+    }
+
+    .term-body {
+      padding: 20px 22px 24px;
+      font-size: 12.5px;
+      line-height: 2.1
+    }
+
+    .t-prompt {
+      color: var(--gold)
+    }
+
+    .t-cmd {
+      color: #fff
+    }
+
+    .t-out {
+      color: rgba(255, 255, 255, .5);
+      padding-left: 14px;
+      display: block
+    }
+
+    .t-link {
+      color: var(--gold);
+      text-decoration: none
+    }
+
+    .t-link:hover {
+      text-decoration: underline
+    }
+
+    .t-ok {
+      color: #28c840
+    }
+
+    .t-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 13px;
+      background: var(--gold);
+      vertical-align: middle;
+      margin-left: 3px;
+      animation: blink 1s ease-in-out infinite
+    }
+
+    footer {
+      border-top: 1px solid rgba(0, 0, 0, .08);
+      padding: 22px 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--paper)
+    }
+
+    footer p {
+      font-size: 12px;
+      color: var(--ink4)
+    }
+
+    footer a {
+      font-size: 12px;
+      color: var(--gold);
+      text-decoration: none
+    }
+
+    /* ══ ANIMATIONS ══ */
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0) scale(1)
+      }
+
+      50% {
+        transform: translateY(-18px) scale(1.03)
+      }
+    }
+
+    @keyframes float-card {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-.5deg)
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(.5deg)
+      }
+    }
+
+    @keyframes card-appear {
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .reveal-l {
+      opacity: 0;
+      transform: translateX(-22px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal-l.visible {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    .reveal-r {
+      opacity: 0;
+      transform: translateX(22px);
+      transition: opacity .7s ease, transform .7s ease
+    }
+
+    .reveal-r.visible {
+      opacity: 1;
+      transform: translateX(0)
+    }
+
+    @media(max-width:900px) {
+      #hero {
+        grid-template-columns: 1fr
+      }
+
+      .hero-right {
+        display: none
+      }
+
+      .hero-left {
+        padding: 100px 24px 60px
+      }
+
+      .story-inner,
+      .work-inner,
+      .skills-inner,
+      .next-grid {
+        padding: 0 24px
+      }
+
+      .next-grid {
+        grid-template-columns: 1fr;
+        gap: 32px
+      }
+
+      .chapter {
+        grid-template-columns: 1fr
+      }
+
+      .ch-line {
+        display: none
+      }
+
+      .ch-content,
+      .chapter:nth-child(even) .ch-content {
+        padding: 28px 0;
+        order: 2
+      }
+
+      .ch-visual,
+      .chapter:nth-child(even) .ch-visual {
+        order: 1;
+        min-height: 220px
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      nav {
+        padding: 14px 24px
+      }
+
+      .nav-links {
+        display: none
+      }
+
+      footer,
+      .contact-inner {
+        padding: 20px 24px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#hero">Shifana<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#story">Story</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a class="nav-cta" href="shifana_resume.html" target="_blank">View CV</a>
-</nav>
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Shifana<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#story">Story</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="shifana_resume.html" target="_blank">View CV</a>
+  </nav>
 
-<!-- ══ HERO ══ -->
-<section id="hero">
-  <!-- LEFT: dark navy content panel -->
-  <div class="hero-left">
-    <div class="hero-eyebrow">Full-Stack · Flutter · Dubai, UAE</div>
-    <h1 class="hero-headline">
-      I build things.<br>
-      Then I learn<br>
-      <em>to build them better.</em>
-    </h1>
-    <p class="hero-sub">
-      Hey, I'm <b>Shifana CT</b> — a developer based in Dubai. I've shipped ERP features, mobile apps, automotive systems, and pharma tools across real production environments. And my biggest curiosity right now? <b>What AI makes possible next.</b>
-    </p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="#work">See my work</a>
-      <a class="btn-ghost" href="#story">My journey</a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="stat-num">3.5<span>yrs</span></div>
-        <div class="stat-lbl">Building production<br>software</div>
+  <!-- ══ HERO ══ -->
+  <section id="hero">
+    <!-- LEFT: dark navy content panel -->
+    <div class="hero-left">
+      <div class="hero-eyebrow">Full-Stack · Flutter · Dubai, UAE</div>
+      <h1 class="hero-headline">
+        I build things.<br>
+        Then I learn<br>
+        <em>to build them better.</em>
+      </h1>
+      <p class="hero-sub">
+        Hey, I'm <b>Shifana CT</b> — a developer based in Dubai. I've shipped ERP features, mobile apps, automotive
+        systems, and pharma tools across real production environments. And my biggest curiosity right now? <b>What AI
+          makes possible next.</b>
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#work">See my work</a>
+        <a class="btn-ghost" href="#story">My journey</a>
       </div>
-      <div>
-        <div class="stat-num">2</div>
-        <div class="stat-lbl">App stores<br>published</div>
-      </div>
-      <div>
-        <div class="stat-num">6<span>+</span></div>
-        <div class="stat-lbl">Live products<br>shipped</div>
-      </div>
-    </div>
-    <div class="scroll-hint"><div class="scroll-line"></div>Scroll to explore</div>
-  </div>
-
-  <!-- RIGHT: animated code card panel -->
-  <div class="hero-right">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
-    <div class="hero-code-card">
-      <div class="code-card-bar">
-        <span class="dot dot-r"></span>
-        <span class="dot dot-y"></span>
-        <span class="dot dot-g"></span>
-        <span class="code-filename">shifana.profile.ts</span>
-      </div>
-      <div class="code-body">
-        <div><span class="c-key">const</span> <span class="c-val">developer</span> <span class="c-dim">= {</span></div>
-        <div><span class="c-dim">&nbsp;&nbsp;name:</span> <span class="c-str">"Shifana CT"</span><span class="c-dim">,</span></div>
-        <div><span class="c-dim">&nbsp;&nbsp;base:</span> <span class="c-str">"Dubai, UAE"</span><span class="c-dim">,</span></div>
-        <div><span class="c-dim">&nbsp;&nbsp;stack:</span> <span class="c-dim">[</span><span class="c-str">"Next.js"</span><span class="c-dim">,</span> <span class="c-str">"Flutter"</span><span class="c-dim">],</span></div>
-        <div><span class="c-dim">&nbsp;&nbsp;exploring:</span> <span class="c-str">"AI &amp; ML"</span><span class="c-dim">,</span></div>
-        <div><span class="c-dim">&nbsp;&nbsp;shipped:</span> <span class="c-val">6</span><span class="c-dim">,</span></div>
-        <div><span class="c-dim">&nbsp;&nbsp;learning:</span> <span class="c-fn">always</span><span class="c-dim">()</span></div>
-        <div><span class="c-dim">}</span></div>
-      </div>
-    </div>
-
-    <div class="hero-badge">
-      <div class="badge-line1">Currently at</div>
-      <div class="badge-line2">FACTS · Dubai 🇦🇪</div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ STORY ══ -->
-<section id="story">
-  <div class="story-inner">
-    <div class="story-intro reveal">
-      <div class="story-label">The journey</div>
-      <h2 class="story-title">From a college desk in Kerala<br>to <em>production code in Dubai.</em></h2>
-      <p class="story-desc">Every developer has an origin story. This one is built on curiosity, a willingness to keep learning, and the belief that there's always something more interesting just around the corner.</p>
-    </div>
-
-    <div class="chapters">
-
-      <div class="chapter">
-        <div class="ch-content reveal-l">
-          <div class="ch-year">2016 – 2019</div>
-          <h3 class="ch-heading">The beginning.<br><em>BSc Physics, Kerala.</em></h3>
-          <p class="ch-body">MES College, Ponnani. Three years of physics, formulas, and labs — and a quiet pull toward computers that wouldn't let go. While classmates looked at academia, something about software kept pulling harder. <b>The idea of building things from nothing.</b></p>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">3<span>+yrs</span></div>
+          <div class="stat-lbl">Building production<br>software</div>
         </div>
-        <div class="ch-line"><div class="ch-dot"></div><div class="ch-vline"></div></div>
-        <div class="ch-visual scene-college reveal-r" style="display:flex;align-items:center;justify-content:center">
-          <svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Atom nucleus -->
-            <circle cx="130" cy="130" r="10" fill="#c9973a" opacity="0.9"/>
-            <circle cx="130" cy="130" r="6" fill="#fff" opacity="0.6"/>
-            <!-- Orbit 1 -->
-            <ellipse cx="130" cy="130" rx="90" ry="36" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/>
-            <circle r="7" fill="#c9973a" opacity="0.9">
-              <animateMotion dur="3s" repeatCount="indefinite">
-                <mpath href="#orbit1"/>
-              </animateMotion>
-            </circle>
-            <path id="orbit1" d="M 220 130 A 90 36 0 1 1 219.9 130" fill="none"/>
-            <!-- Orbit 2 rotated 60deg -->
-            <ellipse cx="130" cy="130" rx="90" ry="36" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none" transform="rotate(60 130 130)"/>
-            <circle r="6" fill="#4caf7d" opacity="0.85">
-              <animateMotion dur="4.5s" repeatCount="indefinite">
-                <mpath href="#orbit2"/>
-              </animateMotion>
-            </circle>
-            <path id="orbit2" d="M 220 130 A 90 36 0 1 1 219.9 130" fill="none" transform="rotate(60 130 130)"/>
-            <!-- Orbit 3 rotated 120deg -->
-            <ellipse cx="130" cy="130" rx="90" ry="36" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none" transform="rotate(120 130 130)"/>
-            <circle r="5" fill="#6eb5ff" opacity="0.8">
-              <animateMotion dur="6s" repeatCount="indefinite">
-                <mpath href="#orbit3"/>
-              </animateMotion>
-            </circle>
-            <path id="orbit3" d="M 220 130 A 90 36 0 1 1 219.9 130" fill="none" transform="rotate(120 130 130)"/>
-            <!-- Pulsing glow on nucleus -->
-            <circle cx="130" cy="130" r="18" fill="none" stroke="#c9973a" stroke-width="1" opacity="0.4">
-              <animate attributeName="r" values="14;24;14" dur="2s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
-            </circle>
+        <div>
+          <div class="stat-num">2</div>
+          <div class="stat-lbl">App stores<br>published</div>
+        </div>
+        <div>
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-lbl">Live products<br>shipped</div>
+        </div>
+      </div>
+      <div class="scroll-hint">
+        <div class="scroll-line"></div>Scroll to explore
+      </div>
+    </div>
+
+    <!-- RIGHT: animated code card panel -->
+    <div class="hero-right">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+
+      <div class="hero-code-card">
+        <div class="code-card-bar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="code-filename">shifana.profile.ts</span>
+        </div>
+        <div class="code-body">
+          <div><span class="c-key">const</span> <span class="c-val">developer</span> <span class="c-dim">= {</span>
+          </div>
+          <div><span class="c-dim">&nbsp;&nbsp;name:</span> <span class="c-str">"Shifana CT"</span><span
+              class="c-dim">,</span></div>
+          <div><span class="c-dim">&nbsp;&nbsp;base:</span> <span class="c-str">"Dubai, UAE"</span><span
+              class="c-dim">,</span></div>
+          <div><span class="c-dim">&nbsp;&nbsp;stack:</span> <span class="c-dim">[</span><span
+              class="c-str">"Next.js"</span><span class="c-dim">,</span> <span class="c-str">"Flutter"</span><span
+              class="c-dim">],</span></div>
+          <div><span class="c-dim">&nbsp;&nbsp;exploring:</span> <span class="c-str">"AI &amp; ML"</span><span
+              class="c-dim">,</span></div>
+          <div><span class="c-dim">&nbsp;&nbsp;shipped:</span> <span class="c-val">6</span><span class="c-dim">,</span>
+          </div>
+          <div><span class="c-dim">&nbsp;&nbsp;learning:</span> <span class="c-fn">always</span><span
+              class="c-dim">()</span></div>
+          <div><span class="c-dim">}</span></div>
+        </div>
+      </div>
+
+      <div class="hero-badge">
+        <div class="badge-line1">Currently at</div>
+        <div class="badge-line2">FACTS · Dubai 🇦🇪</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ STORY ══ -->
+  <section id="story">
+    <div class="story-inner">
+      <div class="story-intro reveal">
+        <div class="story-label">The journey</div>
+        <h2 class="story-title">From a college desk in Kerala<br>to <em>production code in Dubai.</em></h2>
+        <p class="story-desc">Every developer has an origin story. This one is built on curiosity, a willingness to keep
+          learning, and the belief that there's always something more interesting just around the corner.</p>
+      </div>
+
+      <div class="chapters">
+
+        <div class="chapter">
+          <div class="ch-content reveal-l">
+            <div class="ch-year">2016 – 2019</div>
+            <h3 class="ch-heading">The beginning.<br><em>BSc Physics, Kerala.</em></h3>
+            <p class="ch-body">MES College, Ponnani. Three years of physics, formulas, and labs — and a quiet pull
+              toward computers that wouldn't let go. While classmates looked at academia, something about software kept
+              pulling harder. <b>The idea of building things from nothing.</b></p>
+          </div>
+          <div class="ch-line">
+            <div class="ch-dot"></div>
+            <div class="ch-vline"></div>
+          </div>
+          <div class="ch-visual scene-college reveal-r" style="display:flex;align-items:center;justify-content:center">
+            <svg width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Atom nucleus -->
+              <circle cx="130" cy="130" r="10" fill="#c9973a" opacity="0.9" />
+              <circle cx="130" cy="130" r="6" fill="#fff" opacity="0.6" />
+              <!-- Orbit 1 -->
+              <ellipse cx="130" cy="130" rx="90" ry="36" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"
+                fill="none" />
+              <circle r="7" fill="#c9973a" opacity="0.9">
+                <animateMotion dur="3s" repeatCount="indefinite">
+                  <mpath href="#orbit1" />
+                </animateMotion>
+              </circle>
+              <path id="orbit1" d="M 220 130 A 90 36 0 1 1 219.9 130" fill="none" />
+              <!-- Orbit 2 rotated 60deg -->
+              <ellipse cx="130" cy="130" rx="90" ry="36" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" fill="none"
+                transform="rotate(60 130 130)" />
+              <circle r="6" fill="#4caf7d" opacity="0.85">
+                <animateMotion dur="4.5s" repeatCount="indefinite">
+                  <mpath href="#orbit2" />
+                </animateMotion>
+              </circle>
+              <path id="orbit2" d="M 220 130 A 90 36 0 1 1 219.9 130" fill="none" transform="rotate(60 130 130)" />
+              <!-- Orbit 3 rotated 120deg -->
+              <ellipse cx="130" cy="130" rx="90" ry="36" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" fill="none"
+                transform="rotate(120 130 130)" />
+              <circle r="5" fill="#6eb5ff" opacity="0.8">
+                <animateMotion dur="6s" repeatCount="indefinite">
+                  <mpath href="#orbit3" />
+                </animateMotion>
+              </circle>
+              <path id="orbit3" d="M 220 130 A 90 36 0 1 1 219.9 130" fill="none" transform="rotate(120 130 130)" />
+              <!-- Pulsing glow on nucleus -->
+              <circle cx="130" cy="130" r="18" fill="none" stroke="#c9973a" stroke-width="1" opacity="0.4">
+                <animate attributeName="r" values="14;24;14" dur="2s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite" />
+              </circle>
+            </svg>
+            <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">MES College · Kerala · BSc
+                Physics</span></div>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="ch-content reveal-r">
+            <div class="ch-year">2019 – 2022</div>
+            <h3 class="ch-heading">The pivot.<br><em>MCA, Calicut University.</em></h3>
+            <p class="ch-body">Pursuing a Master of Computer Applications was the real turning point. Data structures.
+              Web development. Databases. System design. Final year: a <b>full-stack ERP system built from scratch</b>.
+              Watching it actually deploy and work — that feeling stuck.</p>
+          </div>
+          <div class="ch-line">
+            <div class="ch-dot"></div>
+            <div class="ch-vline"></div>
+          </div>
+          <div class="ch-visual scene-mca reveal-l" style="display:flex;align-items:center;justify-content:center">
+            <svg width="280" height="200" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Terminal window -->
+              <rect x="20" y="20" width="240" height="160" rx="8" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.15)"
+                stroke-width="1" />
+              <!-- Title bar -->
+              <rect x="20" y="20" width="240" height="28" rx="8" fill="rgba(255,255,255,0.07)" />
+              <circle cx="38" cy="34" r="5" fill="#ff5f57" />
+              <circle cx="54" cy="34" r="5" fill="#febc2e" />
+              <circle cx="70" cy="34" r="5" fill="#28c840" />
+              <!-- Line 1: appears -->
+              <text x="36" y="72" font-family="monospace" font-size="11" fill="#4caf7d" opacity="0">
+                <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.1;1" dur="6s" repeatCount="indefinite" />
+                $ npm run build
+              </text>
+              <!-- Line 2 -->
+              <text x="36" y="90" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.5)" opacity="0">
+                <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.35;1" dur="6s"
+                  repeatCount="indefinite" />
+                ✓ Compiled successfully
+              </text>
+              <!-- Line 3 -->
+              <text x="36" y="108" font-family="monospace" font-size="11" fill="#c9973a" opacity="0">
+                <animate attributeName="opacity" values="0;0;0;1;1" keyTimes="0;0.3;0.45;0.55;1" dur="6s"
+                  repeatCount="indefinite" />
+                ✓ ERP deployed to prod
+              </text>
+              <!-- Line 4 -->
+              <text x="36" y="126" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.35)" opacity="0">
+                <animate attributeName="opacity" values="0;0;0;0;1;1" keyTimes="0;0.5;0.6;0.65;0.75;1" dur="6s"
+                  repeatCount="indefinite" />
+                Ready on http://localhost:3000
+              </text>
+              <!-- Blinking cursor -->
+              <rect x="36" y="140" width="8" height="13" fill="#c9973a" rx="1">
+                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+              </rect>
+            </svg>
+            <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">Calicut University · MCA ·
+                2022</span></div>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="ch-content reveal-l">
+            <div class="ch-year">Early 2023</div>
+            <h3 class="ch-heading">The grind.<br><em>Interviews. Rejections. Growth.</em></h3>
+            <p class="ch-body">The first job hunt was humbling. Technical rounds, whiteboard sessions, rejection emails.
+              Early roles at <b>Poonchola Technologies</b> and <b>Exthgen</b> gave what no classroom does: owning code
+              in production, shipping under pressure. Each setback just made the next round clearer.</p>
+          </div>
+          <div class="ch-line">
+            <div class="ch-dot"></div>
+            <div class="ch-vline"></div>
+          </div>
+          <div class="ch-visual scene-interview reveal-r"
+            style="display:flex;align-items:center;justify-content:center">
+            <svg width="260" height="240" viewBox="0 0 260 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Round 1 -->
+              <rect x="30" y="30" width="200" height="44" rx="6" fill="rgba(255,255,255,0.05)"
+                stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+              <circle cx="56" cy="52" r="14" fill="rgba(201,151,58,0.15)" stroke="#c9973a" stroke-width="1.5">
+                <animate attributeName="fill" values="rgba(201,151,58,0.15);rgba(201,151,58,0.35);rgba(201,151,58,0.15)"
+                  dur="2s" repeatCount="indefinite" />
+              </circle>
+              <path d="M49 52 L54 57 L63 47" stroke="#c9973a" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <animate attributeName="stroke-dasharray" values="0 30;30 0;30 0" keyTimes="0;0.3;1" dur="2s"
+                  repeatCount="indefinite" />
+              </path>
+              <text x="80" y="48" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.7)">Technical
+                Round</text>
+              <text x="80" y="63" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.35)">DSA · System
+                Design</text>
+              <!-- Round 2 -->
+              <rect x="30" y="88" width="200" height="44" rx="6" fill="rgba(255,255,255,0.05)"
+                stroke="rgba(255,255,255,0.12)" stroke-width="1" />
+              <circle cx="56" cy="110" r="14" fill="rgba(76,175,125,0.15)" stroke="#4caf7d" stroke-width="1.5">
+                <animate attributeName="fill" values="rgba(76,175,125,0.15);rgba(76,175,125,0.35);rgba(76,175,125,0.15)"
+                  dur="2.5s" begin="0.5s" repeatCount="indefinite" />
+              </circle>
+              <path d="M49 110 L54 115 L63 105" stroke="#4caf7d" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <animate attributeName="stroke-dasharray" values="0 30;30 0;30 0" keyTimes="0;0.3;1" dur="2.5s"
+                  begin="0.5s" repeatCount="indefinite" />
+              </path>
+              <text x="80" y="106" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.7)">Build Something
+                Real</text>
+              <text x="80" y="121" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.35)">React · Firebase
+                · CRUD</text>
+              <!-- Round 3 / offer -->
+              <rect x="30" y="146" width="200" height="44" rx="6" fill="rgba(201,151,58,0.08)"
+                stroke="rgba(201,151,58,0.3)" stroke-width="1" />
+              <circle cx="56" cy="168" r="14" fill="rgba(201,151,58,0.2)" stroke="#c9973a" stroke-width="1.5">
+                <animate attributeName="r" values="14;16;14" dur="1.5s" begin="1s" repeatCount="indefinite" />
+              </circle>
+              <text x="50" y="172" font-family="monospace" font-size="13" fill="#c9973a" text-anchor="middle">✓</text>
+              <text x="80" y="164" font-family="monospace" font-size="11" fill="#c9973a">Offer accepted</text>
+              <text x="80" y="179" font-family="monospace" font-size="10" fill="rgba(201,151,58,0.6)">Every rejection: a
+                lesson</text>
+            </svg>
+            <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">India · First Roles ·
+                2023</span></div>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="ch-content reveal-r">
+            <div class="ch-year">Mid 2023</div>
+            <h3 class="ch-heading">The leap.<br><em>One-way ticket to Dubai.</em></h3>
+            <p class="ch-body">July 2023. A flight. Everything packed in two bags. Dubai opened a different chapter —
+              new city, different pace, bigger stage. <b>AAAGENCY DMCC</b> first, building hospital portals. Three
+              months of learning to deliver fast and client-ready.</p>
+          </div>
+          <div class="ch-line">
+            <div class="ch-dot"></div>
+            <div class="ch-vline"></div>
+          </div>
+          <div class="ch-visual scene-dubai reveal-l" style="display:flex;align-items:center;justify-content:center">
+            <svg width="280" height="220" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Stars -->
+              <circle cx="40" cy="30" r="1.5" fill="white" opacity="0.6">
+                <animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="80" cy="20" r="1" fill="white" opacity="0.4">
+                <animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.7s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="150" cy="15" r="1.5" fill="white" opacity="0.5">
+                <animate attributeName="opacity" values="0.5;1;0.5" dur="2.4s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="220" cy="25" r="1" fill="white" opacity="0.6">
+                <animate attributeName="opacity" values="0.6;1;0.6" dur="1.9s" repeatCount="indefinite" />
+              </circle>
+              <circle cx="260" cy="40" r="1.5" fill="white" opacity="0.4">
+                <animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.6s" repeatCount="indefinite" />
+              </circle>
+              <!-- Dubai skyline silhouette -->
+              <!-- Burj Khalifa -->
+              <rect x="130" y="80" width="6" height="100" fill="rgba(255,255,255,0.15)" />
+              <polygon points="133,60 128,80 138,80" fill="rgba(255,255,255,0.15)" />
+              <!-- Building 2 -->
+              <rect x="100" y="110" width="20" height="70" fill="rgba(255,255,255,0.1)" />
+              <!-- Building 3 -->
+              <rect x="150" y="120" width="22" height="60" fill="rgba(255,255,255,0.1)" />
+              <!-- Building 4 -->
+              <rect x="70" y="130" width="18" height="50" fill="rgba(255,255,255,0.08)" />
+              <rect x="178" y="135" width="16" height="45" fill="rgba(255,255,255,0.08)" />
+              <rect x="50" y="145" width="14" height="35" fill="rgba(255,255,255,0.06)" />
+              <rect x="200" y="140" width="18" height="40" fill="rgba(255,255,255,0.07)" />
+              <!-- Ground -->
+              <line x1="20" y1="180" x2="260" y2="180" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+              <!-- Flight path arc -->
+              <path d="M 20 140 Q 100 40 250 90" stroke="rgba(201,151,58,0.4)" stroke-width="1.5" stroke-dasharray="4 4"
+                fill="none">
+                <animate attributeName="stroke-dashoffset" values="100;0" dur="3s" repeatCount="indefinite" />
+              </path>
+              <!-- Plane icon animated along path -->
+              <g>
+                <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
+                  <mpath href="#flightpath" />
+                </animateMotion>
+                <path d="M0,-5 L6,2 L0,0 L-6,2 Z" fill="#c9973a" opacity="0.9" />
+              </g>
+              <path id="flightpath" d="M 20 140 Q 100 40 250 90" fill="none" />
+              <!-- India dot -->
+              <circle cx="20" cy="140" r="4" fill="#4caf7d" opacity="0.8">
+                <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <text x="8" y="158" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.5)">India</text>
+              <!-- Dubai dot -->
+              <circle cx="250" cy="90" r="5" fill="#c9973a" opacity="0.9">
+                <animate attributeName="r" values="5;7;5" dur="2s" begin="1s" repeatCount="indefinite" />
+              </circle>
+              <text x="234" y="108" font-family="monospace" font-size="9" fill="#c9973a">Dubai 🇦🇪</text>
+            </svg>
+            <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">Dubai, UAE · July
+                2023</span></div>
+          </div>
+        </div>
+
+        <div class="chapter">
+          <div class="ch-content reveal-l">
+            <div class="ch-year">Oct 2023 – Now</div>
+            <h3 class="ch-heading">The build.<br><em>Full-stack, full speed.</em></h3>
+            <p class="ch-body"><b>FACTS Computer Software House</b> — contributing to <b>FactsERP</b> platform and
+              shipping standalone products. <b>Bakkah</b> (automotive). <b>TeamsTime</b> (Flutter, both app stores).
+              <b>Tatmeen pharma scanner</b>. <b>Accounting software</b>. <b>E-commerce platform</b>. Every project: a
+              new domain, a new challenge. And now — <b>AI is the next chapter.</b></p>
+          </div>
+          <div class="ch-line">
+            <div class="ch-dot"></div>
+            <div class="ch-vline"></div>
+          </div>
+          <div class="ch-visual scene-now reveal-r" style="display:flex;align-items:center;justify-content:center">
+            <svg width="280" height="240" viewBox="0 0 280 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Central hub -->
+              <circle cx="140" cy="120" r="22" fill="rgba(201,151,58,0.15)" stroke="#c9973a" stroke-width="1.5">
+                <animate attributeName="r" values="22;25;22" dur="3s" repeatCount="indefinite" />
+              </circle>
+              <text x="140" y="116" font-family="monospace" font-size="9" fill="#c9973a"
+                text-anchor="middle">FACTS</text>
+              <text x="140" y="128" font-family="monospace" font-size="8" fill="rgba(201,151,58,0.7)"
+                text-anchor="middle">ERP</text>
+              <!-- Node 1: ERP top -->
+              <circle cx="140" cy="34" r="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)"
+                stroke-width="1" />
+              <text x="140" y="30" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.7)"
+                text-anchor="middle">FactsERP</text>
+              <text x="140" y="42" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.4)"
+                text-anchor="middle">modules</text>
+              <line x1="140" y1="50" x2="140" y2="98" stroke="rgba(255,255,255,0.15)" stroke-width="1"
+                stroke-dasharray="3 3">
+                <animate attributeName="stroke-dashoffset" values="12;0" dur="1s" repeatCount="indefinite" />
+              </line>
+              <!-- Node 2: Bakkah right -->
+              <circle cx="228" cy="80" r="16" fill="rgba(201,151,58,0.08)" stroke="rgba(201,151,58,0.3)"
+                stroke-width="1" />
+              <text x="228" y="76" font-family="monospace" font-size="8" fill="#c9973a"
+                text-anchor="middle">Bakkah</text>
+              <text x="228" y="88" font-family="monospace" font-size="7" fill="rgba(201,151,58,0.6)"
+                text-anchor="middle">auto</text>
+              <line x1="162" y1="109" x2="212" y2="87" stroke="rgba(201,151,58,0.25)" stroke-width="1"
+                stroke-dasharray="3 3">
+                <animate attributeName="stroke-dashoffset" values="12;0" dur="1.2s" repeatCount="indefinite" />
+              </line>
+              <!-- Node 3: TeamsTime bottom-right -->
+              <circle cx="210" cy="175" r="16" fill="rgba(110,181,255,0.08)" stroke="rgba(110,181,255,0.3)"
+                stroke-width="1" />
+              <text x="210" y="171" font-family="monospace" font-size="7" fill="#6eb5ff"
+                text-anchor="middle">Teams</text>
+              <text x="210" y="183" font-family="monospace" font-size="7" fill="rgba(110,181,255,0.6)"
+                text-anchor="middle">Time</text>
+              <line x1="158" y1="134" x2="194" y2="163" stroke="rgba(110,181,255,0.2)" stroke-width="1"
+                stroke-dasharray="3 3">
+                <animate attributeName="stroke-dashoffset" values="12;0" dur="1.4s" repeatCount="indefinite" />
+              </line>
+              <!-- Node 4: Pharma bottom-left -->
+              <circle cx="70" cy="175" r="16" fill="rgba(76,175,125,0.08)" stroke="rgba(76,175,125,0.3)"
+                stroke-width="1" />
+              <text x="70" y="171" font-family="monospace" font-size="7" fill="#4caf7d"
+                text-anchor="middle">Pharma</text>
+              <text x="70" y="183" font-family="monospace" font-size="7" fill="rgba(76,175,125,0.6)"
+                text-anchor="middle">scanner</text>
+              <line x1="122" y1="134" x2="86" y2="163" stroke="rgba(76,175,125,0.2)" stroke-width="1"
+                stroke-dasharray="3 3">
+                <animate attributeName="stroke-dashoffset" values="12;0" dur="1.6s" repeatCount="indefinite" />
+              </line>
+              <!-- Node 5: AI - top right, glowing -->
+              <circle cx="228" cy="162" r="18" fill="rgba(201,151,58,0.12)" stroke="#c9973a" stroke-width="1.5"
+                stroke-dasharray="4 3">
+                <animate attributeName="stroke-dashoffset" values="0;14" dur="2s" repeatCount="indefinite" />
+              </circle>
+              <text x="228" y="158" font-family="monospace" font-size="9" fill="#c9973a" text-anchor="middle">AI</text>
+              <text x="228" y="170" font-family="monospace" font-size="7" fill="rgba(201,151,58,0.7)"
+                text-anchor="middle">next ✦</text>
+              <!-- Pulse from center -->
+              <circle cx="140" cy="120" r="22" fill="none" stroke="#c9973a" stroke-width="1" opacity="0.3">
+                <animate attributeName="r" values="22;50;22" dur="3s" repeatCount="indefinite" />
+                <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite" />
+              </circle>
+            </svg>
+            <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">FACTS · Dubai · Now</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WORK ══ -->
+  <section id="work">
+    <div class="work-inner">
+      <div class="reveal">
+        <div class="sec-eyebrow">Selected work</div>
+        <h2 class="sec-title">Things I've shipped<br>that <em>people use.</em></h2>
+      </div>
+
+      <div class="work-grid">
+        <a class="wcard reveal" href="#" style="transition-delay:.05s">
+          <div class="wcard-img img-erp"></div>
+          <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="8" y="8" width="64" height="64" rx="4" stroke="white" stroke-width="2" />
+            <path d="M8 28h64M28 28v44" stroke="white" stroke-width="2" />
           </svg>
-          <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">MES College · Kerala · BSc Physics</span></div>
-        </div>
-      </div>
+          <span class="wbadge bl">Live · Enterprise</span>
+          <div class="wcard-overlay">
+            <div class="wcard-tag">ERP · UAE · FactsERP</div>
+            <div class="wcard-name">ERP Module Development</div>
+            <div class="wcard-desc">Feature development on FactsERP — accounting, sales, inventory, payroll, HR
+              enhancements for enterprise clients.</div>
+            <div class="wcard-chips"><span class="chip">Next.js</span><span class="chip">Node.js</span><span
+                class="chip">PostgreSQL</span><span class="chip">AWS</span></div>
+          </div>
+        </a>
 
-      <div class="chapter">
-        <div class="ch-content reveal-r">
-          <div class="ch-year">2019 – 2022</div>
-          <h3 class="ch-heading">The pivot.<br><em>MCA, Calicut University.</em></h3>
-          <p class="ch-body">Pursuing a Master of Computer Applications was the real turning point. Data structures. Web development. Databases. System design. Final year: a <b>full-stack ERP system built from scratch</b>. Watching it actually deploy and work — that feeling stuck.</p>
-        </div>
-        <div class="ch-line"><div class="ch-dot"></div><div class="ch-vline"></div></div>
-        <div class="ch-visual scene-mca reveal-l" style="display:flex;align-items:center;justify-content:center">
-          <svg width="280" height="200" viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Terminal window -->
-            <rect x="20" y="20" width="240" height="160" rx="8" fill="rgba(0,0,0,0.4)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <!-- Title bar -->
-            <rect x="20" y="20" width="240" height="28" rx="8" fill="rgba(255,255,255,0.07)"/>
-            <circle cx="38" cy="34" r="5" fill="#ff5f57"/>
-            <circle cx="54" cy="34" r="5" fill="#febc2e"/>
-            <circle cx="70" cy="34" r="5" fill="#28c840"/>
-            <!-- Line 1: appears -->
-            <text x="36" y="72" font-family="monospace" font-size="11" fill="#4caf7d" opacity="0">
-              <animate attributeName="opacity" values="0;1;1" keyTimes="0;0.1;1" dur="6s" repeatCount="indefinite"/>
-              $ npm run build
-            </text>
-            <!-- Line 2 -->
-            <text x="36" y="90" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.5)" opacity="0">
-              <animate attributeName="opacity" values="0;0;1;1" keyTimes="0;0.2;0.35;1" dur="6s" repeatCount="indefinite"/>
-              ✓  Compiled successfully
-            </text>
-            <!-- Line 3 -->
-            <text x="36" y="108" font-family="monospace" font-size="11" fill="#c9973a" opacity="0">
-              <animate attributeName="opacity" values="0;0;0;1;1" keyTimes="0;0.3;0.45;0.55;1" dur="6s" repeatCount="indefinite"/>
-              ✓  ERP deployed to prod
-            </text>
-            <!-- Line 4 -->
-            <text x="36" y="126" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.35)" opacity="0">
-              <animate attributeName="opacity" values="0;0;0;0;1;1" keyTimes="0;0.5;0.6;0.65;0.75;1" dur="6s" repeatCount="indefinite"/>
-              Ready on http://localhost:3000
-            </text>
-            <!-- Blinking cursor -->
-            <rect x="36" y="140" width="8" height="13" fill="#c9973a" rx="1">
-              <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
-            </rect>
+        <a class="wcard reveal" href="#" style="transition-delay:.1s">
+          <div class="wcard-img img-accounting"></div>
+          <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <path d="M20 60V30l20-14 20 14v30H20z" stroke="white" stroke-width="2" />
+            <rect x="32" y="40" width="16" height="20" stroke="white" stroke-width="2" />
           </svg>
-          <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">Calicut University · MCA · 2022</span></div>
-        </div>
-      </div>
+          <span class="wbadge bl">Live · Production</span>
+          <div class="wcard-overlay">
+            <div class="wcard-tag">Fintech · SaaS</div>
+            <div class="wcard-name">Accounting Software</div>
+            <div class="wcard-desc">Standalone accounting product — invoicing, VAT compliance, payroll processing,
+              multi-currency reporting.</div>
+            <div class="wcard-chips"><span class="chip">React</span><span class="chip">Node.js</span><span
+                class="chip">PostgreSQL</span></div>
+          </div>
+        </a>
 
-      <div class="chapter">
-        <div class="ch-content reveal-l">
-          <div class="ch-year">Early 2023</div>
-          <h3 class="ch-heading">The grind.<br><em>Interviews. Rejections. Growth.</em></h3>
-          <p class="ch-body">The first job hunt was humbling. Technical rounds, whiteboard sessions, rejection emails. Early roles at <b>Poonchola Technologies</b> and <b>Exthgen</b> gave what no classroom does: owning code in production, shipping under pressure. Each setback just made the next round clearer.</p>
-        </div>
-        <div class="ch-line"><div class="ch-dot"></div><div class="ch-vline"></div></div>
-        <div class="ch-visual scene-interview reveal-r" style="display:flex;align-items:center;justify-content:center">
-          <svg width="260" height="240" viewBox="0 0 260 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Round 1 -->
-            <rect x="30" y="30" width="200" height="44" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <circle cx="56" cy="52" r="14" fill="rgba(201,151,58,0.15)" stroke="#c9973a" stroke-width="1.5">
-              <animate attributeName="fill" values="rgba(201,151,58,0.15);rgba(201,151,58,0.35);rgba(201,151,58,0.15)" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <path d="M49 52 L54 57 L63 47" stroke="#c9973a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <animate attributeName="stroke-dasharray" values="0 30;30 0;30 0" keyTimes="0;0.3;1" dur="2s" repeatCount="indefinite"/>
-            </path>
-            <text x="80" y="48" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.7)">Technical Round</text>
-            <text x="80" y="63" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.35)">DSA · System Design</text>
-            <!-- Round 2 -->
-            <rect x="30" y="88" width="200" height="44" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
-            <circle cx="56" cy="110" r="14" fill="rgba(76,175,125,0.15)" stroke="#4caf7d" stroke-width="1.5">
-              <animate attributeName="fill" values="rgba(76,175,125,0.15);rgba(76,175,125,0.35);rgba(76,175,125,0.15)" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-            </circle>
-            <path d="M49 110 L54 115 L63 105" stroke="#4caf7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <animate attributeName="stroke-dasharray" values="0 30;30 0;30 0" keyTimes="0;0.3;1" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-            </path>
-            <text x="80" y="106" font-family="monospace" font-size="11" fill="rgba(255,255,255,0.7)">Build Something Real</text>
-            <text x="80" y="121" font-family="monospace" font-size="10" fill="rgba(255,255,255,0.35)">React · Firebase · CRUD</text>
-            <!-- Round 3 / offer -->
-            <rect x="30" y="146" width="200" height="44" rx="6" fill="rgba(201,151,58,0.08)" stroke="rgba(201,151,58,0.3)" stroke-width="1"/>
-            <circle cx="56" cy="168" r="14" fill="rgba(201,151,58,0.2)" stroke="#c9973a" stroke-width="1.5">
-              <animate attributeName="r" values="14;16;14" dur="1.5s" begin="1s" repeatCount="indefinite"/>
-            </circle>
-            <text x="50" y="172" font-family="monospace" font-size="13" fill="#c9973a" text-anchor="middle">✓</text>
-            <text x="80" y="164" font-family="monospace" font-size="11" fill="#c9973a">Offer accepted</text>
-            <text x="80" y="179" font-family="monospace" font-size="10" fill="rgba(201,151,58,0.6)">Every rejection: a lesson</text>
+        <a class="wcard reveal" href="https://bakkah.autos" target="_blank" style="transition-delay:.15s">
+          <div class="wcard-img img-bakkah"></div>
+          <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="10" y="30" width="60" height="30" rx="6" stroke="white" stroke-width="2" />
+            <circle cx="24" cy="62" r="7" stroke="white" stroke-width="2" />
+            <circle cx="56" cy="62" r="7" stroke="white" stroke-width="2" />
+            <path d="M10 44h60M30 30l8-12h12l8 12" stroke="white" stroke-width="2" />
           </svg>
-          <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">India · First Roles · 2023</span></div>
-        </div>
-      </div>
+          <span class="wbadge bl">Live · bakkah.autos</span>
+          <div class="wcard-overlay">
+            <div class="wcard-tag">Automotive · UAE</div>
+            <div class="wcard-name">Bakkah</div>
+            <div class="wcard-desc">Job card management web app — digital job cards, technician assignment, VAT
+              invoicing.</div>
+            <div class="wcard-chips"><span class="chip">React</span><span class="chip">Node.js</span><span
+                class="chip">MongoDB</span></div>
+          </div>
+        </a>
 
-      <div class="chapter">
-        <div class="ch-content reveal-r">
-          <div class="ch-year">Mid 2023</div>
-          <h3 class="ch-heading">The leap.<br><em>One-way ticket to Dubai.</em></h3>
-          <p class="ch-body">July 2023. A flight. Everything packed in two bags. Dubai opened a different chapter — new city, different pace, bigger stage. <b>AAAGENCY DMCC</b> first, building hospital portals. Three months of learning to deliver fast and client-ready.</p>
-        </div>
-        <div class="ch-line"><div class="ch-dot"></div><div class="ch-vline"></div></div>
-        <div class="ch-visual scene-dubai reveal-l" style="display:flex;align-items:center;justify-content:center">
-          <svg width="280" height="220" viewBox="0 0 280 220" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Stars -->
-            <circle cx="40" cy="30" r="1.5" fill="white" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="2.1s" repeatCount="indefinite"/></circle>
-            <circle cx="80" cy="20" r="1" fill="white" opacity="0.4"><animate attributeName="opacity" values="0.4;0.9;0.4" dur="1.7s" repeatCount="indefinite"/></circle>
-            <circle cx="150" cy="15" r="1.5" fill="white" opacity="0.5"><animate attributeName="opacity" values="0.5;1;0.5" dur="2.4s" repeatCount="indefinite"/></circle>
-            <circle cx="220" cy="25" r="1" fill="white" opacity="0.6"><animate attributeName="opacity" values="0.6;1;0.6" dur="1.9s" repeatCount="indefinite"/></circle>
-            <circle cx="260" cy="40" r="1.5" fill="white" opacity="0.4"><animate attributeName="opacity" values="0.4;0.8;0.4" dur="2.6s" repeatCount="indefinite"/></circle>
-            <!-- Dubai skyline silhouette -->
-            <!-- Burj Khalifa -->
-            <rect x="130" y="80" width="6" height="100" fill="rgba(255,255,255,0.15)"/>
-            <polygon points="133,60 128,80 138,80" fill="rgba(255,255,255,0.15)"/>
-            <!-- Building 2 -->
-            <rect x="100" y="110" width="20" height="70" fill="rgba(255,255,255,0.1)"/>
-            <!-- Building 3 -->
-            <rect x="150" y="120" width="22" height="60" fill="rgba(255,255,255,0.1)"/>
-            <!-- Building 4 -->
-            <rect x="70" y="130" width="18" height="50" fill="rgba(255,255,255,0.08)"/>
-            <rect x="178" y="135" width="16" height="45" fill="rgba(255,255,255,0.08)"/>
-            <rect x="50" y="145" width="14" height="35" fill="rgba(255,255,255,0.06)"/>
-            <rect x="200" y="140" width="18" height="40" fill="rgba(255,255,255,0.07)"/>
-            <!-- Ground -->
-            <line x1="20" y1="180" x2="260" y2="180" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-            <!-- Flight path arc -->
-            <path d="M 20 140 Q 100 40 250 90" stroke="rgba(201,151,58,0.4)" stroke-width="1.5" stroke-dasharray="4 4" fill="none">
-              <animate attributeName="stroke-dashoffset" values="100;0" dur="3s" repeatCount="indefinite"/>
-            </path>
-            <!-- Plane icon animated along path -->
-            <g>
-              <animateMotion dur="3s" repeatCount="indefinite" rotate="auto">
-                <mpath href="#flightpath"/>
-              </animateMotion>
-              <path d="M0,-5 L6,2 L0,0 L-6,2 Z" fill="#c9973a" opacity="0.9"/>
-            </g>
-            <path id="flightpath" d="M 20 140 Q 100 40 250 90" fill="none"/>
-            <!-- India dot -->
-            <circle cx="20" cy="140" r="4" fill="#4caf7d" opacity="0.8">
-              <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <text x="8" y="158" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.5)">India</text>
-            <!-- Dubai dot -->
-            <circle cx="250" cy="90" r="5" fill="#c9973a" opacity="0.9">
-              <animate attributeName="r" values="5;7;5" dur="2s" begin="1s" repeatCount="indefinite"/>
-            </circle>
-            <text x="234" y="108" font-family="monospace" font-size="9" fill="#c9973a">Dubai 🇦🇪</text>
+        <a class="wcard reveal" href="#" style="transition-delay:.2s">
+          <div class="wcard-img img-teams"></div>
+          <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="22" y="8" width="36" height="64" rx="6" stroke="white" stroke-width="2" />
+            <circle cx="40" cy="62" r="4" stroke="white" stroke-width="2" />
+            <line x1="30" y1="20" x2="50" y2="20" stroke="white" stroke-width="2" />
           </svg>
-          <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">Dubai, UAE · July 2023</span></div>
-        </div>
+          <span class="wbadge bs">App Store + Play</span>
+          <div class="wcard-overlay">
+            <div class="wcard-tag">Mobile · Flutter</div>
+            <div class="wcard-name">TeamsTime</div>
+            <div class="wcard-desc">Workforce management app — shift scheduling, attendance tracking, push
+              notifications. Published on both stores.</div>
+            <div class="wcard-chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span
+                class="chip">BLoC</span></div>
+          </div>
+        </a>
       </div>
 
-      <div class="chapter">
-        <div class="ch-content reveal-l">
-          <div class="ch-year">Oct 2023 – Now</div>
-          <h3 class="ch-heading">The build.<br><em>Full-stack, full speed.</em></h3>
-          <p class="ch-body"><b>FACTS Computer Software House</b> — contributing to <b>FactsERP</b> platform and shipping standalone products. <b>Bakkah</b> (automotive). <b>TeamsTime</b> (Flutter, both app stores). <b>Tatmeen pharma scanner</b>. <b>Accounting software</b>. <b>E-commerce platform</b>. Every project: a new domain, a new challenge. And now — <b>AI is the next chapter.</b></p>
-        </div>
-        <div class="ch-line"><div class="ch-dot"></div><div class="ch-vline"></div></div>
-        <div class="ch-visual scene-now reveal-r" style="display:flex;align-items:center;justify-content:center">
-          <svg width="280" height="240" viewBox="0 0 280 240" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Central hub -->
-            <circle cx="140" cy="120" r="22" fill="rgba(201,151,58,0.15)" stroke="#c9973a" stroke-width="1.5">
-              <animate attributeName="r" values="22;25;22" dur="3s" repeatCount="indefinite"/>
-            </circle>
-            <text x="140" y="116" font-family="monospace" font-size="9" fill="#c9973a" text-anchor="middle">FACTS</text>
-            <text x="140" y="128" font-family="monospace" font-size="8" fill="rgba(201,151,58,0.7)" text-anchor="middle">ERP</text>
-            <!-- Node 1: ERP top -->
-            <circle cx="140" cy="34" r="16" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-            <text x="140" y="30" font-family="monospace" font-size="8" fill="rgba(255,255,255,0.7)" text-anchor="middle">FactsERP</text>
-            <text x="140" y="42" font-family="monospace" font-size="7" fill="rgba(255,255,255,0.4)" text-anchor="middle">modules</text>
-            <line x1="140" y1="50" x2="140" y2="98" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="3 3">
-              <animate attributeName="stroke-dashoffset" values="12;0" dur="1s" repeatCount="indefinite"/>
-            </line>
-            <!-- Node 2: Bakkah right -->
-            <circle cx="228" cy="80" r="16" fill="rgba(201,151,58,0.08)" stroke="rgba(201,151,58,0.3)" stroke-width="1"/>
-            <text x="228" y="76" font-family="monospace" font-size="8" fill="#c9973a" text-anchor="middle">Bakkah</text>
-            <text x="228" y="88" font-family="monospace" font-size="7" fill="rgba(201,151,58,0.6)" text-anchor="middle">auto</text>
-            <line x1="162" y1="109" x2="212" y2="87" stroke="rgba(201,151,58,0.25)" stroke-width="1" stroke-dasharray="3 3">
-              <animate attributeName="stroke-dashoffset" values="12;0" dur="1.2s" repeatCount="indefinite"/>
-            </line>
-            <!-- Node 3: TeamsTime bottom-right -->
-            <circle cx="210" cy="175" r="16" fill="rgba(110,181,255,0.08)" stroke="rgba(110,181,255,0.3)" stroke-width="1"/>
-            <text x="210" y="171" font-family="monospace" font-size="7" fill="#6eb5ff" text-anchor="middle">Teams</text>
-            <text x="210" y="183" font-family="monospace" font-size="7" fill="rgba(110,181,255,0.6)" text-anchor="middle">Time</text>
-            <line x1="158" y1="134" x2="194" y2="163" stroke="rgba(110,181,255,0.2)" stroke-width="1" stroke-dasharray="3 3">
-              <animate attributeName="stroke-dashoffset" values="12;0" dur="1.4s" repeatCount="indefinite"/>
-            </line>
-            <!-- Node 4: Pharma bottom-left -->
-            <circle cx="70" cy="175" r="16" fill="rgba(76,175,125,0.08)" stroke="rgba(76,175,125,0.3)" stroke-width="1"/>
-            <text x="70" y="171" font-family="monospace" font-size="7" fill="#4caf7d" text-anchor="middle">Pharma</text>
-            <text x="70" y="183" font-family="monospace" font-size="7" fill="rgba(76,175,125,0.6)" text-anchor="middle">scanner</text>
-            <line x1="122" y1="134" x2="86" y2="163" stroke="rgba(76,175,125,0.2)" stroke-width="1" stroke-dasharray="3 3">
-              <animate attributeName="stroke-dashoffset" values="12;0" dur="1.6s" repeatCount="indefinite"/>
-            </line>
-            <!-- Node 5: AI - top right, glowing -->
-            <circle cx="228" cy="162" r="18" fill="rgba(201,151,58,0.12)" stroke="#c9973a" stroke-width="1.5" stroke-dasharray="4 3">
-              <animate attributeName="stroke-dashoffset" values="0;14" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <text x="228" y="158" font-family="monospace" font-size="9" fill="#c9973a" text-anchor="middle">AI</text>
-            <text x="228" y="170" font-family="monospace" font-size="7" fill="rgba(201,151,58,0.7)" text-anchor="middle">next ✦</text>
-            <!-- Pulse from center -->
-            <circle cx="140" cy="120" r="22" fill="none" stroke="#c9973a" stroke-width="1" opacity="0.3">
-              <animate attributeName="r" values="22;50;22" dur="3s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.3;0;0.3" dur="3s" repeatCount="indefinite"/>
-            </circle>
+      <div class="work-grid" style="margin-top:2px">
+        <a class="wcard reveal" href="#" style="transition-delay:.25s">
+          <div class="wcard-img img-pharma"></div>
+          <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <rect x="20" y="10" width="40" height="55" rx="4" stroke="white" stroke-width="2" />
+            <line x1="20" y1="30" x2="60" y2="30" stroke="white" stroke-width="2" />
+            <rect x="30" y="38" width="20" height="6" rx="2" fill="white" opacity=".4" />
+            <rect x="30" y="50" width="14" height="6" rx="2" fill="white" opacity=".4" />
           </svg>
-          <div style="position:absolute;bottom:20px;left:20px"><span class="ch-visual-tag">FACTS · Dubai · Now</span></div>
-        </div>
-      </div>
+          <span class="wbadge bl">Live · Production</span>
+          <div class="wcard-overlay">
+            <div class="wcard-tag">Pharma · UAE Tatmeen</div>
+            <div class="wcard-name">Tatmeen Pharma Scanner</div>
+            <div class="wcard-desc">Used Honeywell SDK to scan medicine barcodes, then called Tatmeen API to post and
+              upload the scanned data for UAE pharma compliance.</div>
+            <div class="wcard-chips"><span class="chip">React</span><span class="chip">Honeywell SDK</span><span
+                class="chip">Tatmeen API</span></div>
+          </div>
+        </a>
 
-    </div>
-  </div>
-</section>
-
-<!-- ══ WORK ══ -->
-<section id="work">
-  <div class="work-inner">
-    <div class="reveal">
-      <div class="sec-eyebrow">Selected work</div>
-      <h2 class="sec-title">Things I've shipped<br>that <em>people use.</em></h2>
-    </div>
-
-    <div class="work-grid">
-      <a class="wcard reveal" href="#" style="transition-delay:.05s">
-        <div class="wcard-img img-erp"></div>
-        <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="8" y="8" width="64" height="64" rx="4" stroke="white" stroke-width="2"/><path d="M8 28h64M28 28v44" stroke="white" stroke-width="2"/></svg>
-        <span class="wbadge bl">Live · Enterprise</span>
-        <div class="wcard-overlay">
-          <div class="wcard-tag">ERP · UAE · FactsERP</div>
-          <div class="wcard-name">ERP Module Development</div>
-          <div class="wcard-desc">Feature development on FactsERP — accounting, sales, inventory, payroll, HR enhancements for enterprise clients.</div>
-          <div class="wcard-chips"><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span><span class="chip">AWS</span></div>
-        </div>
-      </a>
-
-      <a class="wcard reveal" href="#" style="transition-delay:.1s">
-        <div class="wcard-img img-accounting"></div>
-        <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M20 60V30l20-14 20 14v30H20z" stroke="white" stroke-width="2"/><rect x="32" y="40" width="16" height="20" stroke="white" stroke-width="2"/></svg>
-        <span class="wbadge bl">Live · Production</span>
-        <div class="wcard-overlay">
-          <div class="wcard-tag">Fintech · SaaS</div>
-          <div class="wcard-name">Accounting Software</div>
-          <div class="wcard-desc">Standalone accounting product — invoicing, VAT compliance, payroll processing, multi-currency reporting.</div>
-          <div class="wcard-chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">PostgreSQL</span></div>
-        </div>
-      </a>
-
-      <a class="wcard reveal" href="https://bakkah.autos" target="_blank" style="transition-delay:.15s">
-        <div class="wcard-img img-bakkah"></div>
-        <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="10" y="30" width="60" height="30" rx="6" stroke="white" stroke-width="2"/><circle cx="24" cy="62" r="7" stroke="white" stroke-width="2"/><circle cx="56" cy="62" r="7" stroke="white" stroke-width="2"/><path d="M10 44h60M30 30l8-12h12l8 12" stroke="white" stroke-width="2"/></svg>
-        <span class="wbadge bl">Live · bakkah.autos</span>
-        <div class="wcard-overlay">
-          <div class="wcard-tag">Automotive · UAE</div>
-          <div class="wcard-name">Bakkah</div>
-          <div class="wcard-desc">Job card management web app — digital job cards, technician assignment, VAT invoicing.</div>
-          <div class="wcard-chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">MongoDB</span></div>
-        </div>
-      </a>
-
-      <a class="wcard reveal" href="#" style="transition-delay:.2s">
-        <div class="wcard-img img-teams"></div>
-        <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="22" y="8" width="36" height="64" rx="6" stroke="white" stroke-width="2"/><circle cx="40" cy="62" r="4" stroke="white" stroke-width="2"/><line x1="30" y1="20" x2="50" y2="20" stroke="white" stroke-width="2"/></svg>
-        <span class="wbadge bs">App Store + Play</span>
-        <div class="wcard-overlay">
-          <div class="wcard-tag">Mobile · Flutter</div>
-          <div class="wcard-name">TeamsTime</div>
-          <div class="wcard-desc">Workforce management app — shift scheduling, attendance tracking, push notifications. Published on both stores.</div>
-          <div class="wcard-chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">BLoC</span></div>
-        </div>
-      </a>
-    </div>
-
-    <div class="work-grid" style="margin-top:2px">
-      <a class="wcard reveal" href="#" style="transition-delay:.25s">
-        <div class="wcard-img img-pharma"></div>
-        <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none"><rect x="20" y="10" width="40" height="55" rx="4" stroke="white" stroke-width="2"/><line x1="20" y1="30" x2="60" y2="30" stroke="white" stroke-width="2"/><rect x="30" y="38" width="20" height="6" rx="2" fill="white" opacity=".4"/><rect x="30" y="50" width="14" height="6" rx="2" fill="white" opacity=".4"/></svg>
-        <span class="wbadge bl">Live · Production</span>
-        <div class="wcard-overlay">
-          <div class="wcard-tag">Pharma · UAE Tatmeen</div>
-          <div class="wcard-name">Tatmeen Pharma Scanner</div>
-          <div class="wcard-desc">Honeywell hardware integration — medicine track-and-trace, batch verification, expiry validation, UAE drug serialisation compliant.</div>
-          <div class="wcard-chips"><span class="chip">React</span><span class="chip">Honeywell SDK</span><span class="chip">Tatmeen API</span></div>
-        </div>
-      </a>
-
-      <a class="wcard reveal" href="#" style="transition-delay:.3s">
-        <div class="wcard-img img-ecom"></div>
-        <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none"><path d="M16 20h8l8 30h24l8-22H28" stroke="white" stroke-width="2" stroke-linecap="round"/><circle cx="36" cy="58" r="5" stroke="white" stroke-width="2"/><circle cx="52" cy="58" r="5" stroke="white" stroke-width="2"/></svg>
-        <span class="wbadge bl">Live · Production</span>
-        <div class="wcard-overlay">
-          <div class="wcard-tag">E-Commerce · Full-Stack</div>
-          <div class="wcard-name">E-Commerce Platform</div>
-          <div class="wcard-desc">Custom storefront from scratch — product catalogue, order management CMS, secure JWT checkout, AWS deployment.</div>
-          <div class="wcard-chips"><span class="chip">Next.js</span><span class="chip">Node.js</span><span class="chip">MongoDB</span><span class="chip">AWS</span></div>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SKILLS ══ -->
-<section id="skills">
-  <div class="skills-inner">
-    <div class="reveal">
-      <div class="story-label">Technical depth</div>
-      <h2 class="story-title" style="color:#fff;margin-bottom:0">Tools I use today.<br><em>Exploring what's next.</em></h2>
-    </div>
-    <div class="skills-grid">
-      <div class="sblock reveal" style="transition-delay:.05s">
-        <div class="sblock-icon">⬡</div>
-        <div class="sblock-lbl">Frontend</div>
-        <div class="sblock-items">Next.js<br>React<br>TypeScript<br>Tailwind CSS<br>Framer Motion<br>Three.js</div>
-      </div>
-      <div class="sblock reveal" style="transition-delay:.1s">
-        <div class="sblock-icon">◈</div>
-        <div class="sblock-lbl">Mobile</div>
-        <div class="sblock-items">Flutter<br>Dart<br>BLoC<br>iOS + Android<br>App Store<br>Google Play</div>
-      </div>
-      <div class="sblock reveal" style="transition-delay:.15s">
-        <div class="sblock-icon">◎</div>
-        <div class="sblock-lbl">Backend</div>
-        <div class="sblock-items">Node.js<br>Express.js<br>REST APIs<br>JWT Auth<br>MongoDB<br>PostgreSQL</div>
-      </div>
-      <div class="sblock reveal" style="transition-delay:.2s">
-        <div class="sblock-icon">△</div>
-        <div class="sblock-lbl">Cloud & DevOps</div>
-        <div class="sblock-items">AWS S3<br>Elastic Beanstalk<br>CloudFront<br>Docker<br>CI/CD<br>Git</div>
-      </div>
-      <div class="sblock reveal" style="transition-delay:.25s;border-color:rgba(201,151,58,.3);background:rgba(201,151,58,.05)">
-        <div class="sblock-icon">✦</div>
-        <div class="sblock-lbl" style="color:#e8b96a">AI · Exploring</div>
-        <div class="sblock-items">LLM integration<br>Prompt engineering<br>RAG pipelines<br>AI-assisted dev<br>ML fundamentals<br><span style="color:var(--gold)">→ actively learning</span></div>
+        <a class="wcard reveal" href="#" style="transition-delay:.3s">
+          <div class="wcard-img img-ecom"></div>
+          <svg class="wcard-icon" width="80" height="80" viewBox="0 0 80 80" fill="none">
+            <path d="M16 20h8l8 30h24l8-22H28" stroke="white" stroke-width="2" stroke-linecap="round" />
+            <circle cx="36" cy="58" r="5" stroke="white" stroke-width="2" />
+            <circle cx="52" cy="58" r="5" stroke="white" stroke-width="2" />
+          </svg>
+          <span class="wbadge bl">Live · Production</span>
+          <div class="wcard-overlay">
+            <div class="wcard-tag">E-Commerce · Full-Stack</div>
+            <div class="wcard-name">E-Commerce Platform</div>
+            <div class="wcard-desc">Custom storefront from scratch — product catalogue, order management CMS, secure JWT
+              checkout, AWS deployment.</div>
+            <div class="wcard-chips"><span class="chip">Next.js</span><span class="chip">Node.js</span><span
+                class="chip">MongoDB</span><span class="chip">AWS</span></div>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ NEXT ══ -->
-<section id="next">
-  <div class="next-grid">
-    <div class="reveal">
-      <div class="sec-eyebrow">What's next for me</div>
-      <h2 class="sec-title" style="margin-bottom:16px">Curious about<br><em>AI & what's possible.</em></h2>
-      <p style="font-size:14px;line-height:1.85;color:var(--ink3);font-weight:300;margin-bottom:16px">I've spent the last few years shipping real products across ERP, mobile, automotive, and pharma. Now I'm genuinely excited about where AI is taking software — not as a buzzword, but as a real craft.</p>
-      <p style="font-size:14px;line-height:1.85;color:var(--ink3);font-weight:300">I want to work somewhere building with AI seriously — or at least thinking hard about where it fits. I'm the kind of person who reads docs for fun and ships a side project to understand something properly.</p>
-    </div>
-    <div class="reveal" style="transition-delay:.1s">
-      <div class="next-card" style="border-color:var(--gold)">
-        <div class="next-card-label" style="color:var(--gold)">Currently exploring</div>
-        <div class="next-card-text">LLM integration, RAG pipelines, AI-assisted developer tooling</div>
+  <!-- ══ SKILLS ══ -->
+  <section id="skills">
+    <div class="skills-inner">
+      <div class="reveal">
+        <div class="story-label">Technical depth</div>
+        <h2 class="story-title" style="color:#fff;margin-bottom:0">Tools I use today.<br><em>Exploring what's next.</em>
+        </h2>
       </div>
-      <div class="next-card" style="border-color:var(--navy)">
-        <div class="next-card-label" style="color:var(--navy)">Want to go deeper in</div>
-        <div class="next-card-text">Machine learning fundamentals, AI product development, model fine-tuning</div>
-      </div>
-      <div class="next-card" style="border-color:var(--green)">
-        <div class="next-card-label" style="color:var(--green)">Dream role feels like</div>
-        <div class="next-card-text">Building AI-powered products in a team that takes craft and learning seriously</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CONTACT ══ -->
-<section id="contact">
-  <div class="contact-inner">
-    <div class="reveal">
-      <div class="sec-eyebrow" style="text-align:center;margin-bottom:18px">Say hello</div>
-      <h2 class="contact-title">Got a project?<br><em>Let's talk.</em></h2>
-      <div class="terminal">
-        <div class="term-bar">
-          <span class="tdot" style="background:#ff5f57"></span>
-          <span class="tdot" style="background:#febc2e"></span>
-          <span class="tdot" style="background:#28c840"></span>
-          <span class="term-title">shifana@dubai ~ </span>
+      <div class="skills-grid">
+        <div class="sblock reveal" style="transition-delay:.05s">
+          <div class="sblock-icon">⬡</div>
+          <div class="sblock-lbl">Frontend</div>
+          <div class="sblock-items">Next.js<br>React<br>TypeScript<br>Tailwind CSS<br>Redux Toolkit<br>Framer Motion
+          </div>
         </div>
-        <div class="term-body">
-          <div><span class="t-prompt">➜</span> <span class="t-cmd">./whoami</span></div>
-          <span class="t-out">Full-Stack &amp; Flutter Developer · Dubai 🇦🇪</span>
-          <div style="margin-top:4px"><span class="t-prompt">➜</span> <span class="t-cmd">cat contact.txt</span></div>
-          <span class="t-out">📧 <a class="t-link" href="mailto:shifanachennara@gmail.com">shifanachennara@gmail.com</a></span>
-          <span class="t-out">🔗 <a class="t-link" href="https://linkedin.com/in/shifana-ct-023161220" target="_blank">linkedin.com/in/shifana-ct</a></span>
-          <span class="t-out">📱 <a class="t-link" href="tel:+971542524023">+971 542 524 023</a></span>
-          <div style="margin-top:4px"><span class="t-prompt">➜</span> <span class="t-cmd">./availability.sh</span></div>
-          <span class="t-out"><span class="t-ok">✓</span> Open to new roles in Dubai</span>
-          <span class="t-out"><span class="t-ok">✓</span> Fintech · ERP · AI · Healthcare · Automotive</span>
-          <span class="t-out"><span class="t-ok">✓</span> Response time: &lt; 24h</span>
-          <div style="margin-top:4px"><span class="t-prompt">➜</span> <span class="t-cursor"></span></div>
+        <div class="sblock reveal" style="transition-delay:.1s">
+          <div class="sblock-icon">◈</div>
+          <div class="sblock-lbl">Mobile</div>
+          <div class="sblock-items">Flutter<br>Dart<br>BLoC<br>iOS + Android<br>App Store<br>Google Play</div>
+        </div>
+        <div class="sblock reveal" style="transition-delay:.15s">
+          <div class="sblock-icon">◎</div>
+          <div class="sblock-lbl">Backend</div>
+          <div class="sblock-items">Node.js<br>Express.js<br>REST APIs<br>JWT Auth<br>MongoDB<br>PostgreSQL<br>Supabase
+          </div>
+        </div>
+        <div class="sblock reveal" style="transition-delay:.2s">
+          <div class="sblock-icon">△</div>
+          <div class="sblock-lbl">Cloud & DevOps</div>
+          <div class="sblock-items">AWS S3<br>Elastic Beanstalk<br>CloudFront<br>Docker<br>CI/CD<br>Git</div>
+        </div>
+        <div class="sblock reveal"
+          style="transition-delay:.25s;border-color:rgba(201,151,58,.3);background:rgba(201,151,58,.05)">
+          <div class="sblock-icon">✦</div>
+          <div class="sblock-lbl" style="color:#e8b96a">AI · Exploring</div>
+          <div class="sblock-items">LLM integration<br>Prompt engineering<br>RAG pipelines<br>AI-assisted dev<br>ML
+            fundamentals<br><span style="color:var(--gold)">→ actively learning</span></div>
         </div>
       </div>
-      <a href="mailto:shifanachennara@gmail.com" style="display:inline-block;margin-top:24px;font-size:13px;font-weight:500;padding:13px 30px;background:var(--navy);color:#fff;border-radius:2px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='#1a2f55'" onmouseout="this.style.background='var(--navy)'">Start a conversation →</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <p>© 2025 Shifana CT · Full-Stack &amp; Flutter Developer · Dubai, UAE</p>
-  <a href="shifana_resume.html" target="_blank">Download CV →</a>
-</footer>
+  <!-- ══ NEXT ══ -->
+  <section id="next">
+    <div class="next-grid">
+      <div class="reveal">
+        <div class="sec-eyebrow">What's next for me</div>
+        <h2 class="sec-title" style="margin-bottom:16px">Curious about<br><em>AI & what's possible.</em></h2>
+        <p style="font-size:14px;line-height:1.85;color:var(--ink3);font-weight:300;margin-bottom:16px">I've spent the
+          last few years shipping real products across ERP, mobile, automotive, and pharma. Now I'm genuinely excited
+          about where AI is taking software — not as a buzzword, but as a real craft.</p>
+        <p style="font-size:14px;line-height:1.85;color:var(--ink3);font-weight:300">I want to work somewhere building
+          with AI seriously — or at least thinking hard about where it fits. I'm the kind of person who reads docs for
+          fun and ships a side project to understand something properly.</p>
+      </div>
+      <div class="reveal" style="transition-delay:.1s">
+        <div class="next-card" style="border-color:var(--gold)">
+          <div class="next-card-label" style="color:var(--gold)">Currently exploring</div>
+          <div class="next-card-text">LLM integration, RAG pipelines, AI-assisted developer tooling</div>
+        </div>
+        <div class="next-card" style="border-color:var(--navy)">
+          <div class="next-card-label" style="color:var(--navy)">Want to go deeper in</div>
+          <div class="next-card-text">Machine learning fundamentals, AI product development, model fine-tuning</div>
+        </div>
+        <div class="next-card" style="border-color:var(--green)">
+          <div class="next-card-label" style="color:var(--green)">Dream role feels like</div>
+          <div class="next-card-text">Building AI-powered products in a team that takes craft and learning seriously
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script>
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), 60);
-      obs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
+  <!-- ══ CONTACT ══ -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="sec-eyebrow" style="text-align:center;margin-bottom:18px">Say hello</div>
+        <h2 class="contact-title">Got a project?<br><em>Let's talk.</em></h2>
+        <div class="terminal">
+          <div class="term-bar">
+            <span class="tdot" style="background:#ff5f57"></span>
+            <span class="tdot" style="background:#febc2e"></span>
+            <span class="tdot" style="background:#28c840"></span>
+            <span class="term-title">shifana@dubai ~ </span>
+          </div>
+          <div class="term-body">
+            <div><span class="t-prompt">➜</span> <span class="t-cmd">./whoami</span></div>
+            <span class="t-out">Full-Stack &amp; Flutter Developer · Dubai 🇦🇪</span>
+            <div style="margin-top:4px"><span class="t-prompt">➜</span> <span class="t-cmd">cat contact.txt</span></div>
+            <span class="t-out">📧 <a class="t-link"
+                href="mailto:shifanachennara@gmail.com">shifanachennara@gmail.com</a></span>
+            <span class="t-out">🔗 <a class="t-link" href="https://linkedin.com/in/shifana-ct-023161220"
+                target="_blank">linkedin.com/in/shifana-ct</a></span>
+            <span class="t-out">📱 <a class="t-link" href="tel:+971542524023">+971 542 524 023</a></span>
+            <div style="margin-top:4px"><span class="t-prompt">➜</span> <span class="t-cmd">./availability.sh</span>
+            </div>
+            <span class="t-out"><span class="t-ok">✓</span> Open to new roles in Dubai</span>
+            <span class="t-out"><span class="t-ok">✓</span> Fintech · ERP · AI · Healthcare · Automotive</span>
+            <span class="t-out"><span class="t-ok">✓</span> Response time: &lt; 24h</span>
+            <div style="margin-top:4px"><span class="t-prompt">➜</span> <span class="t-cursor"></span></div>
+          </div>
+        </div>
+        <a href="mailto:shifanachennara@gmail.com"
+          style="display:inline-block;margin-top:24px;font-size:13px;font-weight:500;padding:13px 30px;background:var(--navy);color:#fff;border-radius:2px;text-decoration:none;transition:all .2s"
+          onmouseover="this.style.background='#1a2f55'" onmouseout="this.style.background='var(--navy)'">Start a
+          conversation →</a>
+      </div>
+    </div>
+  </section>
 
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+  <footer>
+    <p>© 2025 Shifana CT · Full-Stack &amp; Flutter Developer · Dubai, UAE</p>
+    <a href="shifana_resume.html" target="_blank">Download CV →</a>
+  </footer>
 
-window.addEventListener('scroll', () => {
-  document.querySelector('nav').style.boxShadow =
-    window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,.08)' : 'none';
-});
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), 60);
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
 
-// blinking cursor
-setInterval(() => {
-  const c = document.querySelector('.t-cursor');
-  if (c) c.style.opacity = c.style.opacity === '0' ? '1' : '0';
-}, 530);
-</script>
+    document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => obs.observe(el));
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow =
+        window.scrollY > 40 ? '0 2px 20px rgba(0,0,0,.08)' : 'none';
+    });
+
+    // blinking cursor
+    setInterval(() => {
+      const c = document.querySelector('.t-cursor');
+      if (c) c.style.opacity = c.style.opacity === '0' ? '1' : '0';
+    }, 530);
+  </script>
 </body>
+
 </html>
